@@ -463,6 +463,20 @@ textarea
     display: block;
     text-align: center;
 }
+.notification{
+  font-size: 14px;
+  background-color: #E7F5E4;
+  color: green;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px;
+  margin-top: 2px;
+  min-height: 12px;
+  text-align:left;
+  margin-left: 3px;
+  margin-right: 3px;
+  display: block;
+  text-align: center;
+}
 
 .member
 {

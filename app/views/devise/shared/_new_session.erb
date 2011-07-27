@@ -1,5 +1,6 @@
 <% if flash.has_key?(:notice) && !flash[:notice].empty? %>
-  <div class="error" id="errorExplanation"><%= raw(flash[:notice]) %></div>
+  <div class="notification"><%= raw(flash[:notice]) %></div>
+  <br/>
 <% end %>  
 
 <div class="form">
