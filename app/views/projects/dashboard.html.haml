@@ -1,0 +1,9 @@
+- title( "#{@project.name} dashboard")
+- menu('project')
+- javascript('dashboard')
+%div{:style=>"width:500px;padding: 20px; margin-left: auto; margin-right: auto;"}
+  %h1= @sprint.name
+  - @sprint.stickers.each do |sticker|
+    = render :partial => "stickers/task", :locals=>{:sticker=>sticker}
+    
+#user_story_dialog{:style=>"display:none;"}

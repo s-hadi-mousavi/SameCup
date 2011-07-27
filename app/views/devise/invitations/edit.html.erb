@@ -1,0 +1,25 @@
+<div class="form" style="margin-left: auto; margin-right: auto;width: 300px;padding: 40px; padding-top: 20px;">
+<% if @user.nil? %>
+<h2>Invalid invitation url</h2>
+try to click on link from email, instead of copy&paste it manually<br/><br/>
+<center><a href="/">Back to Home</a></center>
+<% else %>
+ <span style="font-size: 15px">
+    Your <b>account is already created</b> by your email. <br/>
+    In future you should use your <b>email</b> and <b>this password</b> for sign in.<br/>
+    <br/> Please enter your password:  </span>
+
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :invitation_token %>
+    <p> Email <br/>&nbsp;&nbsp;&nbsp;<b><%=@user.email %></b></p>
+    <p><%= f.label :password %>
+    <%= f.password_field :password %></p>
+
+    <p><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></p>
+
+    <p><%= f.submit "Set my password" %></p>
+  <% end %>
+<% end %>
+</div>

@@ -1,0 +1,32 @@
+<div id="feedback" style="display:none;">
+<%= form_tag feedback_path(), :remote => true, :onsubmit =>"disableFeedback();return true;" do %>
+  <div id="feedback_content">
+    <div class="textfield">
+    <label for="email">Your email for our reply</label><br/>
+        <%= text_field_tag 'email', current_user.nil? ? '' : current_user.email %>
+    </div><br/>
+    <div class="textfield">
+    <label for="feedback">Comment</label><br/>
+        <%= text_area_tag 'comment', nil, :rows => 10, :cols => 30 %>
+    </div>
+    <br/>
+    <div class="submit" id="feedback_buttons">
+    <input type="submit" value="Send" style="width: 100px;"/> &nbsp;&nbsp;<input type="button" value="Close" onclick="hideFeedback();return false;" >
+    </div>
+    <div id="feedback_progress" style="display:none">
+      Sending...<img src="/images/loading.gif">
+    </div>
+  </div>
+  <div id="feedback_thankyou" style="padding-top: 20px; display: none;">
+    <center>
+      <img src="/images/coffeecup-espresso-small.png"><br/>
+  <span class="h1">Thank you for your time</span><br/>
+  <br/>We know that it take your time, but hopefully it will help us
+  make service better<br/><br/><a href="#" onclick="hideFeedback();return false">Close</a></center>
+  </div>
+<% end %>
+</div>
+<script>
+window.feedbackDlg = $('#feedback').dialog({ title: 'So what do you think?', width: 400, height: 380, 
+  closeOnEscape:true, draggable:false, modal: true, resizable: false, autoOpen: false});
+</script>

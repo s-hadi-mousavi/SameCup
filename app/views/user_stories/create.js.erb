@@ -1,0 +1,14 @@
+<% if @user_story.errors.any? %>
+  
+  errors = $('#add_user_story<%=@user_story.sprint_id%>>#form_errors');
+    errors.html("Please check the errors:<br/><%= raw @user_story.errors.full_messages.join("<br/>") %>");
+    errors.show();
+<% else %>
+$('#sprint_stories<%=@user_story.sprint_id%>').prepend("<div id=\"story<%= @user_story.id %>\" class=\"story\"><%= raw escape_javascript(render :partial=>"story", :locals=>{:story=>@user_story, :project=>@project, :sprint=>@sprint}) %></div>");
+var form = "#add_user_story<%=@user_story.sprint_id%>";
+$(form+'>form>p>#form_title').val('');
+$(form+'>form>p>#form_description').val('');
+$(form).hide();
+$('#story_stickers_body<%= @user_story.id %>').show();
+<% end %>
+enableForm("#add_user_story<%= @user_story.sprint_id %>");

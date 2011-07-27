@@ -1,0 +1,11 @@
+<% unless @sticker.nil?%>
+<%= render :partial => "sticker", :object => @sticker %>
+
+<script type="text/javascript" charset="utf-8">
+  $(".sticker[sticker-id=<%= @sticker.id %>]").draggable({
+  	cursor: 'move',
+  	revert: true,
+  	zIndex: 1000
+  });
+</script>
+<% end %>

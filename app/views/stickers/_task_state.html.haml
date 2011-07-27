@@ -1,0 +1,4 @@
+-if sticker.state == TASK_STATE_OPEN
+  %input{:type=>"checkbox", :onclick=>"$.get('#{setstate_project_sprint_sticker_path(@project, @sprint, sticker, :state=>TASK_STATE_DONE)}');return false;"}
+- elsif sticker.state == TASK_STATE_DONE
+  %input{:type=>"checkbox", :checked=>"checked", :onclick=>"$.get('#{setstate_project_sprint_sticker_path(@project, @sprint, sticker, :state=>TASK_STATE_OPEN)}');return false;"}

@@ -1,0 +1,30 @@
+<div class="form member" style="float:left;width: 240px;">
+  <div id="inviteform_errors"  style="color:red; display:none;"></div>
+  <%= form_tag invite_project_members_path(project) , :remote => true, :onsubmit=>"disableInviteForm();", :id=>"inviteform_form" do %>
+  Invite new member
+  <p><%= label_tag "email" %>
+  <%= text_field_tag :email , '', :onkeydown => "$('#inviteform_errors').hide();", :id => 'inviteform_email', :style=>"width:220px;"%></p>
+  <div id="inviteform_loading" style="display:none"><img src="/images/loading.gif"></div>
+  <div id="inviteform_buttons">
+  <%= link_to_function "Invite", "$('#inviteform_form').submit();", :class=>"button"%>
+  </div>
+  <% end %>
+</div>
+
+<script>
+
+function enableInviteForm()
+{
+  $('#inviteform_loading').hide();
+  $('#inviteform_buttons').show();
+  $('#inviteform>input').removeAttr('disabled');
+}
+function disableInviteForm()
+{
+  $('#inviteform_errors').hide();
+  $('#inviteform_loading').show();
+  $('#inviteform_buttons').hide();
+  $('#inviteform_form').attr('disabled', 'disabled');
+}
+
+</script>

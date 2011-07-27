@@ -1,0 +1,27 @@
+  <div>
+      <span class="h1">
+          <a href="#" id="story_title<%=story.id%>" onclick="$('#story_stickers_body<%=story.id%>').toggle();return false;"><%= story.title %></a>
+      </span>
+      <span style="float:right">
+        <%= raw link_to_show 'Edit story', "edit_user_story#{story.id}", :class=>"button" %>
+        <%= link_to 'Delete story',project_user_story_path(project, story), 
+          :confirm => "Are you sure about removing #{story.title} from the project, all stickers will be removed as well?", 
+          :method => :delete, :remote=>true, :class=>"button" %></span>
+  </div>
+  <div id="story_form<%=story.id%>">
+    <%= render :partial=>"story_form", :locals=>{:story=>story, :sprint=>sprint}%>
+  </div>
+  <div id="story_stickers_body<%=story.id%>" style="display:none;">
+    <span id="story_description<%=story.id%>">
+      <%= raw story.description.html_safe.gsub(/\n/, '<br />') %>
+    </span>
+  <br/>
+  <br/>
+    <%= link_to "Add task", add_sticker_project_user_stories_path(project, :sprint_id => story.sprint_id, :story_id => story), :remote=> true, :method => :POST, :class=>"button" %>
+    <div id="story_stickers<%=story.id%>" class="story_stickers" style="min-height: 200px; border: 0px dashed blue; margin: 30px;">
+      <% story.stickers.each do |sticker| %>
+      <%= render :partial => "sticker", :locals=>{:story=>story, :project => project, :sticker => sticker, :sprint=>sprint}%>
+      <% end %>
+      <br clear="both"/>
+    </div>
+  </div>

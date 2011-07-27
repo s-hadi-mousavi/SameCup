@@ -1,0 +1,8 @@
+.bundle
+db/*.sqlite3
+cache/
+log/*.log
+tmp/**/*
+config/database.yml
+db/schema.rb
+.DS_Store

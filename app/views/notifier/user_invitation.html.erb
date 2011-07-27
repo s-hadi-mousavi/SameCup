@@ -1,0 +1,10 @@
+<div style="background-color: #F1F9FE;border: 5px solid #A2D2E8;padding: 10px;margin-bottom: 10px; font-size: 14px;">
+<a href="http://www.samecup.com" target="_blank"><img src="http://samecup.com/images/samecup_logo_gray.png" align="right" border="0"></a>
+<p>Hi,</p>
+
+<%= @project.owner.name %> has invited you to project '<%= @project.name %>', you can access it through the link below:<br/><br/>
+
+<%= link_to @project.name , project_url(@project) %>
+<br/><br/>
+Thank you.  
+</div>

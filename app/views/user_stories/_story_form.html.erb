@@ -1,0 +1,19 @@
+<% form_id = story.id.nil? ? "add_user_story#{sprint.id}" : "edit_user_story#{story.id}"%>
+<div style="margin-left: 20px;display:none;" id="<%=form_id%>">
+  <div id="form_errors"  style="color:red; display:none;"></div>
+  <%= form_for story, :url => story.id.nil? ? project_user_stories_path(@project) : project_user_story_path(@project, story)   , 
+        :remote => true, :onsubmit=>"disableForm('##{form_id}');", :id=>"form_form" do |f|%>
+  <p><%= label_tag "form_title","Title" %>
+  <%= f.text_field :title ,   :id => 'form_title', :style=>"width:320px;"%></p>
+  <p><%= label_tag "form_description","Desription" %>
+  <%= f.text_area :description , :rows => 6, :id => 'form_description', :style=>"width:420px;"%></p>
+  <%= f.hidden_field :sprint_id , {:value => sprint.id}%>
+  <div id="form_loading" style="display:none"><img src="/images/loading.gif"></div>
+  <div id="form_buttons">
+  <%= submit_tag story.id.nil? ? "Add" : "Update" %>&nbsp;
+  <a href="#" onclick="$('#<%=form_id%>').hide();return false;">Cancel</a>
+  </div>
+  <% end %>
+  <br clear="both" />
+</div>
+

@@ -1,0 +1,79 @@
+.form
+{
+
+/*	background-color: #BCE2F5;
+	border: 5px solid #73CAF5;
+*/	
+	background-color: #F1F9FE;
+	border: 5px solid #A2D2E8;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 220px;
+}
+input
+{
+	font-size: 14px;
+	height: 25px;
+	
+}
+textarea
+{
+	font-size: 14px;
+	
+}
+label
+{
+	padding: 0px;
+	margin: 0px;
+	padding-left: 3px;
+	display:block;
+}
+.form .remember_label
+{
+	display: inline;
+	padding-left: 0px;
+}
+.form .checkbox
+{
+	height:14px;
+}
+.hh
+{
+  font-size: 20px;
+  color: orange;
+  text-align: center;
+}
+.recept
+{
+  display:table-cell; 
+  padding: 20px; 
+  width: 220px;
+  color:gray;
+  box-shadow:1px 1px 2px #555;
+  -webkit-box-shadow:1px 1px 2px #555;
+  -moz-box-shadow:1px 1px 3px #555;
+  font-family: Verdana; 
+  letter-spacing: 3px;
+  border:1px solid silver;
+}
+.recept2
+{
+ 
+  padding: 20px; 
+  width: 220px;
+  color:gray;
+  font-family: Verdana; 
+  letter-spacing: 3px;
+  margin-left:auto;
+  margin-right:auto;
+  font-size: 14px;
+}
+
+.pricing
+{
+  
+}
+.pricing th
+{
+  font-weight: normal;
+}

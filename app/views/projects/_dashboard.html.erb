@@ -1,0 +1,44 @@
+<style>
+#head {
+  margin-bottom: 0px;
+}
+</style>
+<div id="backlog" class="backlog"><center><span class=h3>Back Log</span> <a href="#" onclick="toggleBacklog();return false;">Close</a></center>
+    <div class="relative">
+      <% @sprint.project.stickers.where("user_id IS NULL").each do |sticker| %>
+        <%= render :partial => sticker %>
+      <% end %>  
+    </div>
+</div>
+<table class="project" cellpadding="0" cellspacing="0" sprint-id="<%= @sprint.id %>" project-id="<%= @sprint.project.alias %>">
+  <tr>
+    <th class="noborder">&nbsp;</th>
+    <% @sprint.project.states.each do |state| %>
+      <th><%= state.name %></th>
+    <% end %>
+  </tr>
+
+  <% @sprint.project.members_with_first(current_user).each do |user| %>
+    <tr class="user" user-id="<%= user.id %>">
+      <td class="noborder <%= user == current_user ? 'current-user' : '' %>" valign="top">
+        <br/>
+        <div><%= image_tag user.gavatar_url, :size => "80x80"   %></div>
+        <%= user.name || user.email %>
+        <br/><br/>
+        <div class="float-right new-sticker"><%= image_tag '/images/sticker.png', :height => 40 %></div>
+      </td>
+      <% states_size = project.states.size %>
+      <% @sprint.project.states.each do |state| %>
+        <td class="column <%= user == current_user ? 'current-user' : '' %>" id="<%= state.id %>" state-id="<%= state.id %>" valign="top">
+          <div class="relative">
+          <% user.stickers.for_sprint(@sprint.id).by_state(state.id).each do |sticker| %>
+            <%= render :partial => sticker %>
+          <% end %>  
+          </div>
+
+      </td>
+    <% end %>
+  </tr>
+  
+  <% end %>
+</table>

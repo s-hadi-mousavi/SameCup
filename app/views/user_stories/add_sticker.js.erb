@@ -1,0 +1,6 @@
+<% if @sticker.errors.any? %>
+    alert("Please check the errors:\n<%= raw @sticker.errors.full_messages.join("<\n") %>");
+<% else %>
+$('#story_stickers<%=@story_id%>').children('br').remove();
+$('#story_stickers<%=@story_id%>').append("<%= raw escape_javascript( render :partial=>"sticker", :locals=>{:project=>@project, :sticker=>@sticker, :sprint=>@sprint}) %><br clear='both'/>");
+<% end %>

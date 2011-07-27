@@ -1,0 +1,1 @@
+$("#sticker<%= @sticker.id %>").replaceWith('<%= escape_javascript(render :partial => "sticker", :locals =>{:sticker => @sticker,:project=>@project, :sprint=>@sprint}) %>');

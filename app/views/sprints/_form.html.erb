@@ -1,0 +1,49 @@
+<%= form_for(@sprint) do |f| %>
+  <% if @sprint.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@sprint.errors.count, "error") %> prohibited this sprint from being saved:</h2>
+    <ul>
+    <% @sprint.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <%= f.hidden_field :project_id %>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description,'Goal' %>
+    <%= f.text_area :description %>
+  </div>
+  <% unless @previous_sprint.nil? %>
+  <div style="position:absolute; margin-left: -300px;">
+    Previous sprint
+    <%= render :partial => 'sprint', :locals=>{:sprint => @previous_sprint, :project => @project}%>
+  </div>
+  <% end %>
+  <% unless @next_sprint.nil? %>
+  <div style="position:absolute; margin-left: 350px;">
+  Next sprint
+  <%= render :partial => 'sprint', :locals=>{:sprint => @next_sprint, :project => @project}%>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_at, 'Starts at' %>
+    <%= f.text_field :start_at %>
+  </div>
+  <div class="field">
+    <%= f.label :end_at, 'Ends at' %>
+    <%= f.text_field :end_at %>
+  </div>
+  
+
+  <div class="actions">
+    <%= f.submit %> &nbsp;<span style="float:right;padding-right:20px"><%= link_to 'Back to list', project_sprints_path(@project) %></span>
+  </div>
+<% end %>

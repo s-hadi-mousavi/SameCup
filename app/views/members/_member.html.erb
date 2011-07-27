@@ -1,0 +1,26 @@
+<div class="member<%= " scrummaster" if member.role == PROJECT_ROLE_SCRUMMASTER %> "> 
+  <h3 style="margin-top:5px"><%= truncate(member.user.name || member.user.email, :length => 22) %></h3>
+  <span style="float:right;"><%= image_tag member.user.gavatar_url, :size => "80x80"   %></span>
+  <span style="float:left;">
+  <% if project.owner_id == member.user_id %>
+  Project owner
+  <% elsif member.role == PROJECT_ROLE_SCRUMMASTER %>
+  Scrum master
+  <% else %>
+  Team mate
+  <% end%>
+  <br/><br/>
+  <% if member.user_id != current_user.id && project.owner_id == current_user.id %>
+    <% if member.role == PROJECT_ROLE_SCRUMMASTER %>
+      <%= link_to 'Make Team mate', changerole_project_member_path(project, member.user_id, :role=>PROJECT_ROLE_TEAMMATE),  :remote=>true , :class=>"button"%>
+    <% else %>
+      <%= link_to 'Make Scrum master', changerole_project_member_path(project, member.user_id, :role=>PROJECT_ROLE_SCRUMMASTER), :remote=>true , :class=>"button" %>
+    <% end%>
+  <br/>
+    <% if member != current_user && project.owner == current_user%>
+        <%= link_to 'Remove', remove_project_member_path(project, member.user_id), :confirm => "Are you sure about removing #{member.user.name} from the project?", :method => :delete , :class=>"button" %>
+    <% end %>
+  <% end %>
+  </span>
+<br clear="both"/>
+</div>

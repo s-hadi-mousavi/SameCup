@@ -1,0 +1,6 @@
+$(".sticker[sticker-id=<%= @sticker.id %>]").remove();
+<% unless @sticker.user_id.nil?%>
+  $("tr[user-id=<%= @sticker.user_id %>] td[state-id=<%= @sticker.state_id %>] div.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
+<% else %>
+  $("#backlog>.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
+<% end %>

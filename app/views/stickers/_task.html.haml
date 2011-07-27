@@ -1,0 +1,25 @@
+- sticker_desc = sticker.description.html_safe
+.block.minimized{:id=>"task#{sticker.id}"}
+  .menu
+    %div{:style=>"float:right"}
+      %a.button
+        %img{:src=>"/images/arrow_down.png"}
+  
+  .state_menu{:id=>"taskstate#{sticker.id}"}
+    = render :partial=>"stickers/task_state", :locals=>{:sticker=>sticker}
+  
+  .short_desc{:onclick=>"toggleBlock(#{sticker.id});"}
+    = sticker_desc.gsub(/\n/, ' ')[0,60]
+    .assigned_user= sticker.user.nil? ? "not assigned" : "by #{sticker.user.name}"
+  
+  .long_desc{:style=>'display:none'}
+  
+    .top_line{:onclick=>"toggleBlock(#{sticker.id});", :onmouseover=>"$(this).addClass('hover');", :onmouseout=>"$(this).removeClass('hover');"}
+      .assigned_user= sticker.user.nil? ? "not assigned" : "by #{sticker.user.name}"
+    =auto_link(sticker_desc.html_safe.gsub(/\n/, '<br />'), :urls, :target => "_blank")
+  
+    .details
+      - unless sticker.user_story_id.nil?
+        %a{:href=>"#", :id=>"sticker_story#{sticker.id}", :onclick=>"$.get('#{show_dialog_project_user_story_path(@project,sticker.user_story_id)}');return false;"}
+          = sticker.user_story.title.html_safe
+          %br{:clear=>"both"}

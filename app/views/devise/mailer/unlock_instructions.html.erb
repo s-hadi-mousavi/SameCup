@@ -1,0 +1,10 @@
+<div style="background-color: #F1F9FE;border: 5px solid #A2D2E8;padding: 10px;margin-bottom: 10px; font-size: 14px;">
+<a href="http://www.samecup.com" target="_blank"><img src="http://samecup.com/images/samecup_logo_gray.png" align="right" border="0"></a>
+<p>Hello <%= @resource.email %>!</p>
+
+<p>Your account has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
+
+<p>Click the link below to unlock your account:</p>
+
+<p><h3><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></h3></p>
+</div>

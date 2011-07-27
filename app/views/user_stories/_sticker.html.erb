@@ -1,0 +1,13 @@
+<div id="sticker<%= sticker.id %>" sticker-id="<%= sticker.id %>" class="sticker" style="background-color: #FFF046" >
+  <%= form_for sticker,:url => update_sticker_project_user_stories_path(project),  :remote => true do |f| %>
+  <%= hidden_field_tag 'id',sticker.id %>
+    <div><%= sticker.state.nil? ? "Backlog" : sticker.state.name %></div>
+    <%= f.select :user_id, @project.users.collect{|m| [m.name,m.id]},{:include_blank => 'None'}, :onchange => "update_sticker('#{sticker.id}');" %><br/><br/>
+    <%= f.text_area :description, :class => "description-#{sticker.id}", :style=>"border: 2px solid dashed;", :onblur => "update_sticker('#{sticker.id}');" %>
+  <br/><br/>
+    <%= f.text_field :points, :size => 3 , :class => "points", :onblur => "update_sticker('#{sticker.id}');"%> story points
+  <% end %>
+  
+  <%=  link_to '', project_sprint_sticker_path(@project, sprint, sticker), :remote => true, :method => :delete, :class => 'delete', :confirm => "Are you sure?" %>
+<br clear="both"/>
+</div>

@@ -1,0 +1,61 @@
+<% title( "User Stories")%>
+<% menu('userstories') %>
+<% current_sprint = @project.current_sprint %>
+<% @project.sprints.each do |sprint| %>
+<div class="projectplan">
+  <div class="sprint"><%= raw link_to_show sprint.name,"sprint_content#{sprint.id}" %><br clear="both"></div>
+  <div id="sprint_content<%=sprint.id%>" style="display:<%= sprint.id == current_sprint.id  ? '':'none'%>;">
+    <div class="newstory" >
+        <%= link_to_function 'Add User Story', "$('#add_user_story#{sprint.id}').toggle();", :class=>"button" %>
+        <%= render :partial=>"story_form", :locals=>{:story => UserStory.new, :sprint=>sprint}%>
+        <br clear="both"/>
+    </div>
+    <div class="story_list"id="user_stories<%=sprint.id%>">
+    List of user stories  
+    <div id="storynil" class="story">
+      <div><span class="h1"><%= raw link_to_show "Stickers without User Story", "story_content_nil"%></span>
+      </div>
+      <div id="story_content_nil" style="display:none">
+        <%= link_to "Add task", add_sticker_project_user_stories_path(@project,:sprint_id=>sprint.id), :remote=> true, :method => :POST, :class=>"button" %>
+        <div id="story_stickersnil" class="story_stickers" style="min-height: 400px; border: 0px dashed blue; margin: 30px; display: ; ">
+          <% sprint.stickers.where("user_story_id IS NULL").order("state_id").each do |sticker| %>
+          <%= render :partial => "sticker", :locals=>{ :project => @project, :sticker => sticker, :sprint=>sprint}%>
+          <% end %>
+          <br clear="both"/>
+        </div>
+      </div>
+    </div>
+      <div id="sprint_stories<%=sprint.id%>">
+      <% sprint.user_stories.each do |story| %>
+        <div id="story<%= story.id %>" class="story">
+          <%= render :partial=>"story", :locals => {:story=>story, :project => @project, :sprint=>sprint} %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<br />
+<script>
+
+function enableForm(formId)
+{
+  $(formId+'>form>#form_loading').hide();
+  $(formId+'>form>#form_buttons').show();
+  $(formId+'>form>p>input').removeAttr('disabled');
+  $(formId+'>form>p>textarea').removeAttr('disabled');
+}
+function disableForm(formId)
+{
+  $(formId+'>form>#form_loading').show();
+  $(formId+'>form>#form_buttons').hide();
+  $(formId+'>form>p>input').attr('disabled', 'disabled');
+  $(formId+'>form>p>textarea').attr('disabled','disabled');
+}
+function update_sticker(sticker_id)
+{
+    var form = $("#edit_sticker_"+sticker_id);
+    form.submit();
+}
+</script>

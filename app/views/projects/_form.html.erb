@@ -1,0 +1,27 @@
+<%= form_for @project,:html=> {:id=>"project_form"}  do |f| %>
+  <% if @project.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@project.errors.count, "error") %> found:</h2>
+    <ul>
+    <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <p><%= f.label :name %>
+    <%= f.text_field :name %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :alias %>
+    <%= f.text_field :alias %><br/><span style="color: silver;font-size:10px;padding-left:10px;">*please use only letters,digits and -</span></p>
+    
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

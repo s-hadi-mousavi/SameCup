@@ -1,0 +1,10 @@
+<div class="form">
+<h1 style="margin:0px;"><%= link_to sprint.name || "Untitled", project_sprint_path(project.alias, sprint.id) %></h1>
+<div><%= sprint.start_at.strftime("%d/%m/%Y")%> -> <%= sprint.end_at.strftime("%d/%m/%Y")%></div>
+<% if project.owner == current_user %>
+<div style="padding-top: 15px;">
+  <%= link_to 'Edit', edit_sprint_path(sprint), :class=>"button" %> 
+  <% if project.sprints.count > 1 %> <%= link_to 'Destroy', sprint, :confirm => 'Are you sure?', :method => :delete, :class=>"button" %><% end %>
+</div>
+<% end %>
+</div>

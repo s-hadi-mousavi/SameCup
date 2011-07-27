@@ -1,0 +1,32 @@
+<div id="sticker<%= sticker.id %>" sticker-id="<%= sticker.id %>" class="sticker" style="left: <%= sticker.left -%>px; top: <%= sticker.top -%>px; background-color: <%= sticker.color -%>;z-index: <%= sticker.updated_at.to_i -%>">
+  <% unless sticker.user_story_id.nil? %>
+    <a href="#" id="sticker_story<%= sticker.id %>" onclick="$.get('<%=show_dialog_project_user_story_path(@project,sticker.user_story_id)%>');return false">
+    <%= truncate(sticker.user_story.title.html_safe, :length=>22) %></a><br/>
+  <% end %>
+  <%= auto_link(sticker.description.html_safe.gsub(/\n/, '<br />'), :urls, :target => "_blank") %>
+  <%=  link_to '', project_sprint_sticker_path(@project, @sprint, sticker), :remote => true, :method => :delete, :class => 'delete', :confirm => "Are you sure?" %>
+
+  <div class="colors">  
+    <%=  link_to '', project_sprint_sticker_path(@project, @sprint, sticker, :sticker => {:color => '#FAA6EA'}), :remote => true, :method => 'put', :class => 'pink' %>
+    <%=  link_to '', project_sprint_sticker_path(@project, @sprint, sticker, :sticker => {:color => '#BFFC7F'}), :remote => true, :method => 'put', :class => 'green' %>
+    <%=  link_to '', project_sprint_sticker_path(@project, @sprint, sticker, :sticker => {:color => "#FFF046"}), :remote => true, :method => 'put', :class => 'yellow' %>    
+    <%=  link_to '', project_sprint_sticker_path(@project, @sprint, sticker, :sticker => {:color => "#A9BAFA"}), :remote => true, :method => 'put', :class => 'blue' %>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $(".sticker[sticker-id=<%= sticker.id -%>]").dblclick(function(e){
+    $.ajax({
+          url: '<%= edit_project_sprint_sticker_path(@project, @sprint, sticker) -%>',
+          dataType: 'script',
+          type: 'GET'
+    });
+  });
+  
+  $(".sticker[sticker-id=<%= sticker.id %>]").draggable({
+  	cursor: 'move',
+  	revert: true,
+  	zIndex: 1000,
+  	start: function(event, ui) {$(ui.helper).addClass('transparent');},
+  	stop: function(event, ui){$(ui.helper).removeClass('transparent');}
+  });
+</script>

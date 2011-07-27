@@ -1,0 +1,8 @@
+<% unless @user_story.nil?%>
+if(window.userStoryDlg)
+{
+$('#user_story_dialog').html('<%=raw escape_javascript(@user_story.description.gsub(/\n/,"<br/>"))%>');
+window.userStoryDlg.dialog('option','title', '<%=escape_javascript(@user_story.title)%>');
+window.userStoryDlg.dialog('open');
+}
+<% end %>

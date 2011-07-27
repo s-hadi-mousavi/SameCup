@@ -1,0 +1,11 @@
+<% form_id = "#edit_user_story#{@user_story.id}"%>
+<% if @user_story.errors.any? %>
+    errors = $('<%=form_id%>>#form_errors');
+    errors.html("Please check the errors:<br/><%= raw @user_story.errors.full_messages.join("<br/>") %>");
+    errors.show();
+<% else %>
+$('#story_title<%=@user_story.id%>').text("<%=@user_story.title%>");
+$('#story_description<%=@user_story.id%>').html("<%= raw escape_javascript(@user_story.description.html_safe.gsub(/\n/, '<br />'))%>");
+$('<%=form_id%>').hide();
+<% end %>
+enableForm("<%= form_id %>");

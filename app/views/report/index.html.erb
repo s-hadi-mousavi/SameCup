@@ -1,0 +1,41 @@
+<% title( "Burn Down Chart") %>
+<% menu('report') %>
+<% javascript('jqplot/jquery.jqplot.min,jqplot/jqplot.dateAxisRenderer.min,jqplot/jqplot.canvasTextRenderer.min')
+javascript('jqplot/jqplot.canvasAxisTickRenderer.min,jqplot/jqplot.highlighter.min,jqplot/jqplot.cursor.min,jqplot/jqplot.canvasAxisLabelRenderer.min') %>
+<% stylesheet('jquery.jqplot.min') %>
+<div style="padding-left: 200px;">
+<% unless @reports.blank? %>
+<h1>Burn down chart</h1>
+  <div id="chartdiv" style="height:500px;width:1000px; "></div>
+  <script>
+
+    line1= [<%= @points %>];
+    line2= [<%= @endpoints %>]
+    plot1 = $.jqplot('chartdiv', [line1, line2], {
+        title:'<%= @project.name %>',
+        axes:{
+            xaxis:{
+                renderer:$.jqplot.DateAxisRenderer,
+                rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
+                tickOptions:{
+                    formatString:'%b %#d, %Y', 
+                    fontSize:'10pt', 
+                    fontFamily:'Arial', 
+                    angle:-30
+                }
+            },
+            yaxis:{tickOptions:{formatString:'%d'}, min: 0}
+        },
+        highlighter: {
+          sizeAdjust: 10,
+          formatString:'<table class="jqplot-highlighter"><tr><td><b>%s<b/></td></tr><tr><td>%s</td></tr></table><!--%s-->'
+        },
+        cursor: {show: false},
+
+    });
+  </script>
+<% else %>
+  <h3>Sorry, no data to display right now.<br/> Report will be ready as soon as the project will pass first sprint.<br/> Points are 
+    counted after end date of the sprint.</h3>
+<% end %>
+</div>

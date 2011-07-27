@@ -1,0 +1,5 @@
+<% unless @user_story_id.nil?%>
+$('#story<%=@user_story_id%>').remove();
+<% else %>
+alert('Sorry, something went wrong');
+<% end %>

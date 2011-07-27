@@ -1,0 +1,9 @@
+enableInviteForm();
+<% unless @errors.blank? -%>
+  $("#inviteform_errors").html("<%= escape_javascript(@errors.join('<br/>') )%>");
+  $("#inviteform_errors").show(300);
+  
+<% else -%>
+  $("#inviteform_errors").hide(300);
+  window.location.reload();
+<% end -%>

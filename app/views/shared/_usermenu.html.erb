@@ -1,0 +1,21 @@
+<li>
+<%= link_to "My projects", projects_path,  :onmouseover =>"$('#project_menu').show();", :style => "width:120px;", :class => yield(:menu) == 'project' ? 'selected-menu' : 'user-menu' %>
+<div id="project_menu"  onmouseout="$('#project_menu').hide();return false;" onmouseover ="$('#project_menu').show();">
+ <ul onmouseover ="$('#project_menu').show();">
+  <li><b><%= link_to "My projects", projects_path %></b></li>
+  <% current_user.projects[0..4].each do |prj| %>
+  <li><%= link_to prj.name, project_path(prj) %></li>
+  <% end %>
+  <li style="border-top: 1px solid silver;margin-top: 5px"><%= link_to "+ Add project", new_project_path() %></li>
+ </ul>
+</div>
+</li>
+<% if !@project.nil? && !@project.id.nil? %>
+<li><%= link_to 'Sprints', project_sprints_path(@project), :class => yield(:menu) == 'sprints' ? 'selected-menu' : 'user-menu' %></li>
+<li><%= link_to 'Members', project_members_path(@project), :class => yield(:menu) == 'members' ? 'selected-menu' : 'user-menu' %></li>
+  <% if current_user.is_master_of_project?(@project)%>
+  <!-- <li><%= link_to 'User Stories', project_user_stories_path(@project), :class => yield(:menu) == 'userstories' ? 'selected-menu' : 'user-menu' %></li>
+  <li><%= link_to 'Report', report_project_path(@project), :class => yield(:menu) == 'report' ? 'selected-menu' : 'user-menu' %></li> -->
+  <% end %>
+<% end %>
+<li><%= link_to "Account", edit_user_registration_path(current_user), :class => yield(:menu) == 'account' ? 'selected-menu' : '' %></li>
