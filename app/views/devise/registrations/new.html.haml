@@ -1,0 +1,35 @@
+.form{:style=>"padding-left:50px;padding-bottom:50px;padding-right:50px"}
+  %h2 Sign up
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    -if flash.has_key?(:alert) && !flash[:alert].empty?
+      .error#errorExplanation= raw(flash[:alert])
+    
+    %p
+      = f.label :user_name
+      = f.text_field :user_name
+
+    %p
+      = f.label :email
+      = f.text_field :email
+
+    %p
+      = f.label :password
+      = f.password_field :password
+
+    %p{:style=>"font-size: 12px;color: gray;"}
+      By clicking the "Sign up" button below, I certify that I have read and agree to the PiggyBelt 
+      =link_to "Terms of Use", termsofuse_url ,:target=>"_blank"
+      , PiggyBelt 
+      =link_to "Privacy Policy", privacypolicy_url, :target=>"_blank"
+      , and to create account at the PiggyBelt Webservice, and subscribe on low volume news.
+
+    %p
+      = f.submit "Sign up" , :class=>"button big"
+  %h2 Or
+  = #link_to user_omniauth_authorize_path(:facebook), :class=>"button login" do
+    -#%img{:src=>"/images/facebook.png", :title=>"Authorize by Facebook"}
+    -#Sign up with Facebook
+  = link_to user_omniauth_authorize_path(:twitter), :class=>"button login" do
+    %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter"}
+    Sign up with Twitter        
+

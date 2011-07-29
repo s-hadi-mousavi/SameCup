@@ -36,4 +36,7 @@ en:
       unlock_instructions: 'Unlock Instructions'
       user:
         invitation: 'You are invited on Scrum Board (SameCup.com)'
+    omniauth_callbacks:
+      success: 'Successfully authorized from %{kind} account.'
+      failure: 'Could not authorize you from %{kind} because "%{reason}".'
         

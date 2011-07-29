@@ -1,0 +1,36 @@
+- if flash.has_key?(:notice) && !flash[:notice].empty?
+  .notification= raw(flash[:notice])
+
+.form
+  = form_for(:user, :as => :user, :url => session_path(:user)) do |f|
+    -if flash.has_key?(:alert) && !flash[:alert].empty?
+      .error#errorExplanation= raw(flash[:alert])
+    %p
+      = f.label :email
+      = f.text_field :email, :style =>"width: 190px"
+
+    %p
+      = f.label :password
+      = f.password_field :password, :style=>"width: 190px"
+
+    %p
+      = f.check_box :remember_me, {:checked => true, :class=>'checkbox'}
+      = f.label :remember_me, "remember me", {:class => 'remember_label'}
+
+    %p
+      = f.submit "Sign in"
+  = link_to "Forgot your password?", new_password_path(:user)
+
+  %h2 Or
+  = link_to openid_url, :class=>"button login" do
+    %img{:src=>"/images/openid_icon.png", :width=>"20", :height=>"20"}
+    Sign in with Google
+  = link_to user_omniauth_authorize_path(:twitter), :class=>"button login" do
+    %img{:src=>"/images/twitter.png", :align=>"top", :height=>"20"}
+    Sign in with Twitter
+  .g-clear-10
+  
+.form
+  %center
+    %span{:class=>"h3"}
+      = link_to "Create new account",new_user_registration_url

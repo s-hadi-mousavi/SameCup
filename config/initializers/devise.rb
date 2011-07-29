@@ -3,7 +3,6 @@
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "SameCup <support@samecup.com>"
-  config.use_default_scope = true
   config.default_scope = :user
   config.encryptor = :sha1
   
@@ -117,6 +116,8 @@ Devise.setup do |config|
   # you can configure them inside the config.warden block. The example below
   # allows you to setup OAuth, using http://github.com/roman/warden_oauth
   #
+  config.omniauth :twitter, APP_CONFIG['twitter_key'], APP_CONFIG['twitter_secret']
+  
   # config.warden do |manager|
   #   manager.oauth(:twitter) do |twitter|
   #     twitter.consumer_secret = <YOUR CONSUMER SECRET>

@@ -20,9 +20,6 @@ Dashboard = {
     $('.sticker')
     .live('dblclick',Dashboard.stickerDblClick);
     
-    // $('.sticker>.colors>a').live('click', Dashboard.stickerColorClick);
-    // $('.sticker>.delete').live('click', Dashboard.stickerDeleteClick);
-    
     $(".new-sticker").draggable({
       cursor: 'move',
       connectWith: '.state',
@@ -70,6 +67,7 @@ Dashboard = {
   stickerDblClick: function(e){
     var sticker = $(this);
     var url = sticker.attr('sticker_url');
+
     var form_url = sticker.attr('form_url');
     var state_id = sticker.parent().attr('state_id');
 
@@ -80,46 +78,7 @@ Dashboard = {
       type: 'GET'
     })
   },
-  stickerAdd: function(el){
-  },
-  stickerColorClick: function(e){
-    var el = $(this);
-    var sticker = el.parent().parent();
-    var url = sticker.attr('sticker_url');
-    sticker.css('background-color', el.attr('color'));
-    if(url.length > 0){
-      $.ajax({
-        url: url + '?sticker[color]=' + escape(el.attr('color')),
-        // dataType: 'script',
-        type: 'PUT'
-      })
-    }
-    e.stopPropagation();
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    return false;
-  },
-  stickerDeleteClick: function(e){
-    e.stopPropagation();
-    e.preventDefault();
-    e.stopImmediatePropagation();
 
-    if(!window.confirm('Are you sure?'))
-      return;
-
-    var el = $(this);
-    var sticker = el.parent();
-    var url = sticker.attr('sticker_url');
-    sticker.fadeOut(200);
-    if(url.length > 0){
-      $.ajax({
-        url: url,
-        // dataType: 'script',
-        type: 'DELETE'
-      })
-    }
-    return false;
-  },
   stickerFormBlur: function(e){
     var el = $(this);
     var form = el.parent();
@@ -128,7 +87,7 @@ Dashboard = {
   stickerFormKeyPress: function(e){
      if (e.keyCode == '13' && e.shiftKey == true) {
            e.preventDefault();
-           Dashboard.stickerFormKeyPress(e);
+           $(this).parent().submit();
      }
   }
   

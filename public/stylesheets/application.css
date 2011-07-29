@@ -493,6 +493,12 @@ a.button
   color: #555;
 }
 
+.button.login{
+  height: 25px;
+  font-size: 18px;
+  width: 200px;
+}
+
 .block
 {
   display: block;

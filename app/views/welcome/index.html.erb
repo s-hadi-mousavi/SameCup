@@ -26,7 +26,7 @@
   <% unless feed.nil? %>
       <% feed.items[0..5].each do |entry|  %>
        <div class="newsitem"><%= link_to h(entry.title), entry.link %><br/>
-          <span><%= truncate(entry.description.gsub(/<\/?[^>]*>/, ""), :length => 100) %></span>
+          <span><%= raw truncate(entry.description.gsub(/<\/?[^>]*>/, ""), :length => 100) %></span>
          </div>
       <% end %>
   <% end %>

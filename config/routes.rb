@@ -4,7 +4,7 @@ Samecup::Application.routes.draw do |map|
   resources :sprints
   
 
-  devise_for :users
+  devise_for :users,:controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
   resources :projects do
     resources :sprints do
       resources :stickers do
