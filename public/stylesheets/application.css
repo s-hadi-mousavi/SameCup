@@ -11,6 +11,22 @@ body, p, ol, ul, td {
 	src: url('/marker_sd_italic.ttf');
 }
 
+.g-clear,.g-clear-10,.g-clear-20,.g-clear-40{
+	clear:both;
+	height:0px;
+	overflow:hidden;
+	font-size:0px;	
+}
+.g-clear-10 {
+	height:10px;
+}
+.g-clear-20{
+	height:20px;
+}
+.g-clear-40{
+	height:40px;
+}
+
 #head {
 	padding: 10px;
 /*	background-color: #1980B3;*/
@@ -201,46 +217,7 @@ div.field, div.actions {
 	width: auto;
 }
 
-table.project {
-	border: none;
-}
 
-table.project th {
-	font-family: /*custom*/;
-	font-size: 16px;
-	font-weight: bold;
-	padding-bottom: 10px;
-	background: url(/images/vertical.png) repeat-y top left;
-}
-
-table.project td {
-	padding: 0px;
-	margin: 0px;
-	background: url(/images/vertical.png) repeat-y top left;
-	height: 300px;
-	width: 380px  ;
-	position: relative;
-	border-bottom: 1px solid #ccc;
-}
-table.project td.cell
-{
-  width: 200px;
-  
-}
-
-table.project td.current-user {
-	border-top: 1px solid gray;
-	border-bottom: 1px solid gray;
-	background-color: #efefef;
-}
-
-table.project td.active {
-	background-color: #efffff;
-}
-.backlog{
-  display: none;
-  background: #F1F9FE;margin-bottom: 10px;padding:3px; height: 300px;
-}
 .activelog {
 	background: #efffff;
 }
@@ -265,30 +242,7 @@ table.project .noborder {
 }
 
 
-/* Stickers */
 
-.sticker {
-    background-color: rgb(255, 240, 70);
-    height: 120px;
-    padding: 10px;
-    position: absolute;
-    width: 150px;
-	  font-family: Arial;
-    font-size: 13px;
-    box-shadow:1px 1px 4px #666;
-    -webkit-box-shadow:1px 1px 4px #666;
-    -moz-box-shadow:1px 1px 4px #666;
-		word-wrap: break-word;
-}
-
-.sticker.ui-sortable-placeholder { 
-	visibility: visible !important;
-	opacity:0.3; 
-}
-
-.sticker.ui-sortable-placeholder * { 
-	visibility: hidden; 
-}
 
 .newsitem
 {
@@ -317,69 +271,7 @@ table.project .noborder {
 	margin-bottom: 0px;
 }
 
-.sticker .delete, .sticker .ok, .sticker .edit, .sticker .colors {
-	display: none;
-}
 
-.sticker:hover {
-	z-index: 99999999999 !important;
-}
-
-.sticker:hover .delete {
-	width: 31px;
-	height: 31px;
-	display: block;
-	position: absolute;
-	right: -14px;
-	top: -14px;
-	background: url(/images/delete.png) no-repeat;
-	opacity: 0.7;
-}
-
-.sticker:hover .edit {
-	width: 31px;
-	height: 31px;
-	display: block;
-	position: absolute;
-	left: -14px;
-	top: -14px;
-	background: url(/images/edit.png) no-repeat;
-	opacity: 0.7;
-}
-
-.sticker:hover .ok {
-	width: 31px;
-	height: 31px;
-	display: none;
-	position: absolute;
-	left: -14px;
-	top: -14px;
-	background: url(/images/ok.png) no-repeat;
-	opacity: 0.7;
-	border: none;
-	cursor: pointer;
-}
-
-.sticker:hover .colors {
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-/*	opacity: 0.7;*/
-	width: 16px;
-	height: 64px;
-	display:block;
-}
-
-.sticker textarea {
-	background: none;
-	border: 3px dashed orange;
-	width: 145px;
-	height: 110px;
-	overflow: hidden;
-	font-family: Arial;
-  font-size: 13px;
-	margin: -2px;
-}
 
 input:focus, textarea:focus {
   outline: 0 none;
@@ -389,41 +281,6 @@ textarea
   padding: 4px;
 }
 
-.pink {
-	width: 15px;
-	height: 15px;
-	display: block;
-	background: #FAA6EA;
-	border-left: 1px solid #666;
-	border-top: 1px solid #666;
-}
-
-.green {
-	width: 15px;
-	height: 15px;
-	display: block;
-	background: #BFFC7F;
-	border-left: 1px solid #666;
-	border-top: 1px solid #666;
-}
-
-.yellow {
-	width: 15px;
-	height: 15px;
-	display: block;
-	background: #FFF046;	
-	border-left: 1px solid #666;
-	border-top: 1px solid #666;
-}
-
-.blue {
-	width: 15px;
-	height: 15px;
-	display: block;
-	background: #A9BAFA;	
-	border-left: 1px solid #666;
-	border-top: 1px solid #666;
-}
 .plus
 {
   font-size: 20px;
@@ -579,14 +436,7 @@ textarea
 
 }
 
-.backlog .sticker
-{
-  opacity:0.4;filter:alpha(opacity=40);
-}
-.backlog .sticker:hover
-{
-  opacity:0.8;filter:alpha(opacity=80);
-}
+
 .transparent
 {
   opacity:0.8;filter:alpha(opacity=80);

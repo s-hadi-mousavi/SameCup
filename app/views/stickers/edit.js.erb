@@ -1,2 +1,2 @@
-$(".sticker[sticker-id=<%= @sticker.id %>]").html('<%= escape_javascript(render :partial => "edit") %>');
-$(".sticker textarea").focus();
+$("#sticker<%= @sticker.id %>").html('<%= escape_javascript(render :partial => "form") %>');
+$("#sticker<%= @sticker.id %>>form>textarea").focus();

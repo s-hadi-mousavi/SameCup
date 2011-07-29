@@ -1,6 +1,10 @@
-$(".sticker[sticker-id=<%= @sticker.id %>]").remove();
 <% unless @sticker.user_id.nil?%>
-  $("tr[user-id=<%= @sticker.user_id %>] td[state-id=<%= @sticker.state_id %>] div.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
+  var el = $(".sticker[sticker_id=<%= @sticker.id %>]");
+  $('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>')
+  .insertBefore(el);
+
+  el.remove();
+  
 <% else %>
-  $("#backlog>.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
+  //$("#backlog>.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
 <% end %>

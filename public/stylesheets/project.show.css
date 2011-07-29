@@ -1,0 +1,59 @@
+#head {
+  margin-bottom: 0px;
+}
+table.project {
+	border: none;
+	width:100%;
+}
+
+table.project th {
+	font-family: /*custom*/;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	background: url(/images/vertical.png) repeat-y top left;
+}
+
+table.project td {
+	padding: 0px;
+	margin: 0px;
+	background: url(/images/vertical.png) repeat-y top left;
+	height: 300px;
+	width: 380px  ;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+table.project td.cell
+{
+  min-width: 200px;
+  margin: 0px;
+  padding: 0px;
+}
+
+table.project td.current-user {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	background-color: #efefef;
+}
+
+table.project td.active {
+	background-color: #efffff;
+}
+.backlog{
+  display: none;
+  background: #F1F9FE;margin-bottom: 10px;padding:3px; height: 300px;
+}
+
+.state {
+	position: relative;
+	border: 0px solid red;
+	width: 100%;
+	height: 100%;
+}
+.state.active {
+	background: #efffff;
+}
+
+.highlight{
+  background-color: #E7F5E4;
+}

@@ -1,0 +1,172 @@
+.backlog .sticker
+{
+  opacity:0.4;filter:alpha(opacity=40);
+}
+.backlog .sticker:hover
+{
+  opacity:0.8;filter:alpha(opacity=80);
+}
+
+.pink {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #FAA6EA;
+	border-left: 1px solid #666;
+	border-top: 1px solid #666;
+}
+
+.green {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #BFFC7F;
+	border-left: 1px solid #666;
+	border-top: 1px solid #666;
+}
+
+.yellow {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #FFF046;	
+	border-left: 1px solid #666;
+	border-top: 1px solid #666;
+}
+
+.blue {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #A9BAFA;	
+	border-left: 1px solid #666;
+	border-top: 1px solid #666;
+}
+
+/* Stickers */
+#stickers{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+#stickers li{
+  float: left;
+}
+
+.sticker {
+    background-color: rgb(255, 240, 70);
+    height: 120px;
+    margin:3px;
+    width: 150px;
+	  font-family: Arial;
+    font-size: 13px;
+    box-shadow:1px 1px 4px #666;
+    -webkit-box-shadow:1px 1px 4px #666;
+    -moz-box-shadow:1px 1px 4px #666;
+		word-wrap: break-word;
+}
+.sticker-highlight{
+  background-color: #F0FAD7;
+  border: 3px dashed #D3F285 ;
+  height: 120px;
+  padding: 10px;
+  margin:3px;
+  width: 150px;
+}
+
+
+.sticker.new{
+  position: absolute;
+  opacity:0.95;
+  z-index:99999999990 !important;
+  list-style-type: none;
+}
+
+
+.sticker.ui-sortable-placeholder { 
+	visibility: visible !important;
+	opacity:0.3; 
+}
+
+.sticker.ui-sortable-placeholder * { 
+	visibility: hidden; 
+}
+
+.sticker .delete, .sticker .ok, .sticker .edit, .sticker .colors {
+	display: none;
+}
+
+.sticker:hover {
+	z-index: 99999999999 !important;
+}
+
+.sticker:hover .edit {
+	width: 31px;
+	height: 31px;
+	display: block;
+	position: absolute;
+	left: -14px;
+	top: -14px;
+	background: url(/images/edit.png) no-repeat;
+	opacity: 0.7;
+}
+
+.sticker:hover .ok {
+	width: 31px;
+	height: 31px;
+	display: none;
+	position: absolute;
+	left: -14px;
+	top: -14px;
+	background: url(/images/ok.png) no-repeat;
+	opacity: 0.7;
+	border: none;
+	cursor: pointer;
+}
+.sticker .content{
+  margin:5px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sticker .colors {
+  position: relative;
+	left: 134px;
+	bottom: 105px;
+	opacity: 0.7;
+	width: 16px;
+	height: 64px;
+	display: hidden;
+/*  z-index: 999999999;*/
+}
+
+.sticker:hover .colors{
+  display: block;
+}
+.sticker .delete{
+  position: relative;
+	left: 135px;
+	bottom: 140px;
+	background: url(/images/delete.png) no-repeat;
+	opacity: 0.7;
+	width: 31px;
+	height: 31px;
+	display: none;
+  
+}
+
+.sticker:hover .delete {
+  display: block;
+}
+
+.sticker textarea {
+	background: none;
+	border: 3px dashed orange;
+	width: 145px;
+	height: 110px;
+	overflow: hidden;
+	font-family: Arial;
+  font-size: 13px;
+	margin: -2px;
+}

@@ -13,19 +13,28 @@ class StickersController < ApplicationController
   end
 
   def create
-    
-    if !@project.nil? 
+      
       @sprint = @project.sprints.find(params[:sprint_id]) 
+      @sticker_id = params[:sticker_id]
+      @state_id = params[:state_id]
       #if user is not defined than it's backlog
-      params[:sticker][:user_id] = nil if params[:sticker].has_key?(:user_id) && params[:sticker][:user_id].to_i == 0
-      params[:sticker][:project_id] = @project.id 
-      @sticker = @sprint.stickers.create(params[:sticker]) 
-    end 
+
+      @sticker = Sticker.create(
+        :user_id => current_user.id, 
+        :project_id => @project.id, 
+        :sprint_id => @sprint.id, 
+        :options=>{:color =>'#FFF046'},
+        :description => 'As a user I want',
+        :state_id => @state_id
+        ) 
   end
 
   def update
+
     @sticker = @project.stickers.find params[:id]
     if @sticker.sprint.project.member?(current_user)
+      @sticker_id = params[:sticker].delete(:sticker_id)
+      @sticker_color = params[:sticker].delete(:sticker_color)
       @sticker.update_attributes(params[:sticker])
       if params[:state_id] or params[:noredraw]
         render :nothing => true

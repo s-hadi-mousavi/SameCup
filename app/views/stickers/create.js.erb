@@ -1,0 +1,7 @@
+<% unless @sticker.nil?%>
+  var el = $("#<%= @sticker_id %>");
+  $('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>')
+  .insertBefore(el);
+
+  el.remove();
+<% end %>

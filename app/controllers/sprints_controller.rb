@@ -1,4 +1,5 @@
 class SprintsController < ApplicationController
+  before_filter  :authenticate_user!
   before_filter :_get_project
   
   # GET /sprints

@@ -1,0 +1,8 @@
+= form_for @sticker, :url => project_sprint_sticker_path(@project, @sprint, @sticker), :remote => true, :class => "edit-form-#{@sticker.id}" do |f|
+  = f.text_area :description, :id => "description-#{@sticker.id}", :class=>"sticker_description"
+  =  link_to '', project_sprint_sticker_path(@project, @sprint, @sticker), :remote => true, :method => :delete, :class => 'delete', :confirm => "Are you sure?"
+:javascript
+  $('.sticker_description')
+  .bind('blur', Dashboard.stickerFormBlur)
+  .bind('keypress', Dashboard.stickerFormKeyUp)
+
