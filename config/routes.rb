@@ -40,6 +40,7 @@ Samecup::Application.routes.draw do |map|
     end
   end
   
+  match '/profile/remove_twitter' => "profile#remove_twitter", :as => 'profile_remove_twitter'
 
     
   post '/feedback' => 'feedback#post', :as =>'feedback'

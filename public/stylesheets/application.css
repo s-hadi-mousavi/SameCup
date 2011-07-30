@@ -494,9 +494,22 @@ a.button
 }
 
 .button.login{
-  height: 25px;
+  height: 28px;
   font-size: 18px;
   width: 200px;
+}
+
+.button.red{
+  background:-moz-linear-gradient(center top , #E35478, #FC884E) repeat scroll 0 0 transparent;
+  background-image: -webkit-gradient(linear, 0% 10%, 0% 70%, from(#FF5252), to(#FC8888));
+  border: 2px solid #FC8888;
+  border-bottom: 2px solid #FC8888;
+  
+}
+
+.button img {
+  text-align: top;
+  vertical-align: middle;
 }
 
 .block

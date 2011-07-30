@@ -10,12 +10,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
-  def twitter
-    
+  
+  def twitter  
     # You need to implement the method below in your model
     @user = User.find_for_twitter_oauth(env["omniauth.auth"], current_user)
 
     if @user.persisted?
+      return  redirect_to(edit_user_registration_path(current_user)) unless current_user.nil?
+      
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
       sign_in_and_redirect @user, :event => :authentication
     else

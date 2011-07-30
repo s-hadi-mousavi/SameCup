@@ -3,8 +3,8 @@
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "SameCup <support@samecup.com>"
-  config.default_scope = :user
-  config.encryptor = :sha1
+  # config.default_scope = :user
+  #config.encryptor = :sha1
   
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is

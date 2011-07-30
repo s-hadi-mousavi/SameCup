@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable and :timeoutable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :lockable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :lockable, :omniauthable,
+         :encryptable, :encryptor => :sha1
 
   has_many :project_users
   has_many :projects, :through => :project_users
   has_many :stickers
-  has_one :profile
+  has_one :profile, :dependent => :destroy
         
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :name
@@ -57,19 +58,32 @@ class User < ActiveRecord::Base
     end
   end
 
-   def self.find_for_twitter_oauth(access_token, signed_in_resource=nil)
-
+   def self.find_for_twitter_oauth(access_token, user=nil)
     access_token['extra'].delete('access_token')
     uid = access_token['uid']
-    if profile = Profile.find_by_twitter_id(uid)
+    
+    #If user logged and want to add Twitter auth 
+    if !user.nil?
+      data = access_token['extra']['user_hash']
+      user.profile.params = access_token
+      # user.profile.city = user_info["location"]
+      user.profile.twitter_id = data['id']
+      user.profile.save(:validate => false)
+      user
+      
+    #Check profile with twitter_id
+    elsif profile = Profile.find_by_twitter_id(uid)
       profile.user
-    else # Create an user with a stub password. 
+      
+    # Create an user with a stub password.
+    else  
      user_info = access_token['user_info']
      data = access_token['extra']['user_hash']
 
      user = User.new(:email => "#{uid}@twitter.com", :password => Devise.friendly_token[0,20])
      user.name = user_info['nickname'].gsub(".","-") if User.count(:conditions=>{:name => user_info['nickname']}) == 0
      user.save(:validate => false)
+     user.confirm!
 
      unless user.nil?
        #user_info["image"]=>"http://a3.twimg.com/profile_images/102128608/IMG_4008_normal.jpg"
@@ -82,9 +96,9 @@ class User < ActiveRecord::Base
        user.profile.twitter_id = data['id']
        user.profile.save(:validate => false)
      end
-
      user
     end
+    
    end
    
 end

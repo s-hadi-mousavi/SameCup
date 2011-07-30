@@ -1,0 +1,19 @@
+.section{
+	margin-bottom: 10px;
+	padding: 10px;
+  padding-top: 20px;
+	background-color: #F1F9FE;
+	border: 5px solid #A2D2E8;
+	width: 300px;
+}
+.left{
+  float: left;
+  padding-left: 20px;
+}
+
+.center{
+  text-align: left;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
