@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :project_users
   has_many :projects, :through => :project_users
   has_many :stickers
+  has_one :profile
         
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :name
@@ -67,18 +68,17 @@ class User < ActiveRecord::Base
      data = access_token['extra']['user_hash']
 
      user = User.new(:email => "#{uid}@twitter.com", :password => Devise.friendly_token[0,20])
-     user.user_name = user_info['nickname'].gsub(".","-") if User.count(:conditions=>{:user_name => user_info['nickname']}) == 0
+     user.name = user_info['nickname'].gsub(".","-") if User.count(:conditions=>{:name => user_info['nickname']}) == 0
      user.save(:validate => false)
 
      unless user.nil?
        #user_info["image"]=>"http://a3.twimg.com/profile_images/102128608/IMG_4008_normal.jpg"
-       name = user_info['name'].split(" ")
-
-       user.profile.download_remote_image(user_info["image"])      
-       user.profile.first_name = name[0] if name.size > 0
-       user.profile.last_name = name[1] if name.size > 1
-       user.profile.personal_data = access_token
-       user.profile.city = user_info["location"]
+       #name = user_info['name'].split(" ")
+       # user.profile.download_remote_image(user_info["image"])      
+       # user.profile.first_name = name[0] if name.size > 0
+       # user.profile.last_name = name[1] if name.size > 1
+       user.profile.params = access_token
+       # user.profile.city = user_info["location"]
        user.profile.twitter_id = data['id']
        user.profile.save(:validate => false)
      end

@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
   def self.up
     create_table :profiles do |t|
-      t.integer :twitter_id
+      t.string :twitter_id
       t.text :params
       t.integer :user_id
 

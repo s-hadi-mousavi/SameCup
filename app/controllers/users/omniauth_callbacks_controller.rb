@@ -1,8 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    #disable registration
-    return redirect_to(root_path) if APP_CONFIG['closed_registration']
-    
     # You need to implement the method below in your model
     @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     if @user.persisted?
@@ -14,7 +11,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
   def twitter
-    return redirect_to(root_path) if APP_CONFIG['closed_registration']
     
     # You need to implement the method below in your model
     @user = User.find_for_twitter_oauth(env["omniauth.auth"], current_user)
