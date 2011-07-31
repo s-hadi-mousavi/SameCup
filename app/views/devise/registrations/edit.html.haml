@@ -34,13 +34,29 @@
       %h3 Authorize with Twitter/Facebook
       - if current_user.profile.twitter_id.nil?
         = link_to user_omniauth_authorize_path(:twitter), :class=>"button login" do
-          %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter"}
+          %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter", :height=>"20px"}
           Twitter
           
       -else
         = link_to profile_remove_twitter_path(), :class=>"button login red", :confirm=>"Are you sure?" do
-          %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter"}
+          %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter", :height=>"20px"}
           Remove Twitter
+
+      - if current_user.profile.facebook_id.nil?
+        = link_to user_omniauth_authorize_path(:facebook), :class=>"button login" do
+          %img{:src=>"/images/facebookicon.png", :title=>"Authorize by Facebook", :height=>"20px"}
+          Facebook
+
+      -else
+        = link_to profile_remove_facebook_path(), :class=>"button login red", :confirm=>"Are you sure?" do
+          %img{:src=>"/images/facebookicon.png", :title=>"Authorize by Facebook", :height=>"20px"}
+          Remove Facebook
+
+      = link_to user_omniauth_authorize_path(:google), :class=>"button login" do
+        %img{:src=>"/images/google.png", :title=>"Authorize by Facebook", :height=>"20px"}
+        Google
+
+
     .section
       %h3 Cancel my account
       %p

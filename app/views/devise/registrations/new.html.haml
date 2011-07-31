@@ -26,10 +26,14 @@
     %p
       = f.submit "Sign up" , :class=>"button big"
   %h2 Or
-  = #link_to user_omniauth_authorize_path(:facebook), :class=>"button login" do
-    -#%img{:src=>"/images/facebook.png", :title=>"Authorize by Facebook"}
-    -#Sign up with Facebook
-  = link_to user_omniauth_authorize_path(:twitter), :class=>"button login" do
-    %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter"}
+  = link_to user_omniauth_authorize_path(:google), :class=>"button login" do
+    %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter", :height=>"20px"}
     Sign up with Twitter        
+
+  = link_to user_omniauth_authorize_path(:twitter), :class=>"button login" do
+    %img{:src=>"/images/twitter.png", :title=>"Authorize by Twitter", :height=>"20px"}
+    Sign up with Twitter        
+  = link_to user_omniauth_authorize_path(:facebook), :class=>"button login" do
+    %img{:src=>"/images/facebook.png", :title=>"Authorize by Facebook", :height=>"20px"}
+    Sign up with Facebook
 

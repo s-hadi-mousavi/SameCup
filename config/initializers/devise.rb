@@ -116,7 +116,10 @@ Devise.setup do |config|
   # you can configure them inside the config.warden block. The example below
   # allows you to setup OAuth, using http://github.com/roman/warden_oauth
   #
+  require 'openid/store/filesystem'
   config.omniauth :twitter, APP_CONFIG['twitter_key'], APP_CONFIG['twitter_secret']
+  config.omniauth :facebook, APP_CONFIG['facebook_key'], APP_CONFIG['facebook_secret']
+  config.omniauth :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   
   # config.warden do |manager|
   #   manager.oauth(:twitter) do |twitter|

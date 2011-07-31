@@ -41,15 +41,14 @@ Samecup::Application.routes.draw do |map|
   end
   
   match '/profile/remove_twitter' => "profile#remove_twitter", :as => 'profile_remove_twitter'
-
+  match '/profile/remove_facebook' => "profile#remove_facebook", :as => 'profile_remove_facebook'
+  match '/profile/remove_google' => "profile#remove_google", :as => 'profile_remove_google'
     
   post '/feedback' => 'feedback#post', :as =>'feedback'
   
 #  get '/users/invitation/:invitation_token' => 'invitations#edit', :as => 'accept_invitation'
 #  put '/users/invitation/:invitation_token' => 'invitations#update', :as => 'update_invitation'
   
-  match '/auth' =>'authorization#index'
-  match '/openid/google' => "authorization#google", :as => :openid
   match '/termsofuse' => 'welcome#static', :as => :termsofuse
   match '/privacypolicy' => 'welcome#static', :as => :privacypolicy
   match '/prices' => 'welcome#static', :as => :prices
