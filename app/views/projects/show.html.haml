@@ -4,13 +4,15 @@
 - stylesheet('project.show')
 %center
   %h1{:style=>"display:inline;"}= @sprint.name
+  
   %div{:style=>"display:inline;margin-left:3px;"}
     %a{:href=>"#", :onclick=>"$('#backlog').toggle();return false;"} Backlog
     %a{:href=>"#", :onclick=>"$('#sprint_goal').toggle();return false;"} Goal
+  
   %div{:id=>"sprint_goal", :class=>"form", :style=>"width: 400px;display:none;text-align:left;"}
     %center= "#{@sprint.start_at.strftime('%m/%d/%Y')} - #{@sprint.end_at.strftime('%m/%d/%Y')}"
+    = raw @sprint.description.gsub(/\r/, '<br/>') unless @sprint.description.blank?
     
-  = raw @sprint.description.gsub(/\r/, '<br/>') unless @sprint.description.blank?
   %center
     %a{:href=>"#", :onclick=>"$('#sprint_goal').hide();return false;"} Hide
   
