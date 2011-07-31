@@ -1,6 +1,6 @@
 class StickersController < ApplicationController
   before_filter :authenticate_user!, :_get_project, :_get_sprint
-  protect_from_forgery :except => [:create]
+  protect_from_forgery :except => [:create, :update]
   layout false
 
   def show
