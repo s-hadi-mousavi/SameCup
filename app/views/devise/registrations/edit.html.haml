@@ -52,9 +52,15 @@
           %img{:src=>"/images/facebookicon.png", :title=>"Authorize by Facebook", :height=>"20px"}
           Remove Facebook
 
-      = link_to user_omniauth_authorize_path(:google), :class=>"button login" do
-        %img{:src=>"/images/google.png", :title=>"Authorize by Facebook", :height=>"20px"}
-        Google
+      - if current_user.profile.google_id.nil?
+        = link_to user_omniauth_authorize_path(:google), :class=>"button login" do
+          %img{:src=>"/images/google.png", :title=>"Authorize by Google", :height=>"20px"}
+          Google
+
+      -else
+        = link_to profile_remove_google_path(), :class=>"button login red", :confirm=>"Are you sure?" do
+          %img{:src=>"/images/google.png", :title=>"Authorize by Facebook", :height=>"20px"}
+          Remove Google
 
 
     .section
