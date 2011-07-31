@@ -129,8 +129,15 @@ class User < ActiveRecord::Base
       user.profile.google_id = uid
       user.profile.save(:validate => false)
       user
+
+    #Check user with email
+    elsif user = User.find_by_email(email)
+      user.profile.params = access_token
+      user.profile.google_id = uid
+      user.profile.save(:validate => false)
+      user
       
-    #Check profile with twitter_id
+    #Check profile with google_id
     elsif profile = Profile.find_by_google_id(uid)
       profile.user
       
