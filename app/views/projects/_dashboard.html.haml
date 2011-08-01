@@ -7,6 +7,7 @@
   %ul.state{:id=>"backlog"}
     - @sprint.project.stickers.where("user_id IS NULL").each do |sticker|
       = render :partial => sticker
+
 %div{:id=>"newsticker", :style=>"display:none;"}
   %li.sticker.new{:url=>"#{project_sprint_stickers_path(:project_id=>@project.alias, :sprint_id=>@sprint.id)}", :style=>"z-index:99999999"}
     .content
