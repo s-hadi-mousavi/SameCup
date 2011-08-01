@@ -45,10 +45,12 @@ table.project td.active {
 }
 
 .state {
-	position: relative;
-	border: 0px solid red;
-	width: 100%;
-	height: 100%;
+  position: relative;
+  border: 0px solid red;
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  
 }
 .state.active {
 	background: #efffff;

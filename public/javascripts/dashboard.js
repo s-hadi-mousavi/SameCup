@@ -1,4 +1,6 @@
 Dashboard = {
+  backlogContainer: 0,
+  
   init: function()
   {
     window.userStoryDlg = $('#user_story_dialog').dialog({ width: 400, height: 400, 
@@ -15,6 +17,15 @@ Dashboard = {
       hoverClass: 'active',
       drop: Dashboard.stickerDrop
     });
+    
+    Dashboard.backlogContainer = $('.backlog');
+    
+    $("#backlog").droppable({
+      hoverClass: 'activelog',
+      drop: Dashboard.stickerDrop
+    });
+        
+  
     
     //make live event for stickers
     $('.sticker')
@@ -64,6 +75,7 @@ Dashboard = {
     }
     
   },
+
   stickerDblClick: function(e){
     var sticker = $(this);
     var url = sticker.attr('sticker_url');
@@ -89,6 +101,9 @@ Dashboard = {
            e.preventDefault();
            $(this).parent().submit();
      }
+  },
+  toggleBacklog: function(e){
+    Dashboard.backlogContainer.toggle();
   }
   
 }

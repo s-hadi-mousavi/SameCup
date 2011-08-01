@@ -48,7 +48,7 @@ def invite
         member.update_attributes(:role => PROJECT_ROLE_TEAMMATE)
       else
         # if user exists, we check if he is already a member
-        if @project.member? user
+        if @project.member? user.id
           @errors << "#{email} is already a member"
         else
           # add user to the project and  send information emial

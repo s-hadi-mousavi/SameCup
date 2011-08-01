@@ -98,7 +98,7 @@ class UserStoriesController < ApplicationController
   def update_sticker
     @sticker = Sticker.find params[:id]
     @sprint = @sticker.sprint
-    if @sticker.sprint.project.member?(current_user)
+    if @sticker.sprint.project.member?(current_user.id)
       @sticker.update_attributes(params[:sticker])
       
       #if you set user to None than put nil

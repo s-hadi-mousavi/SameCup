@@ -6,7 +6,7 @@
   %h1{:style=>"display:inline;"}= @sprint.name
   
   %div{:style=>"display:inline;margin-left:3px;"}
-    %a{:href=>"#", :onclick=>"$('#backlog').toggle();return false;"} Backlog
+    %a{:href=>"#", :onclick=>"Dashboard.toggleBacklog();return false;"} Backlog
     %a{:href=>"#", :onclick=>"$('#sprint_goal').toggle();return false;"} Goal
   
   %div{:id=>"sprint_goal", :class=>"form", :style=>"width: 400px;display:none;text-align:left;"}

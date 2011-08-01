@@ -14,8 +14,8 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
   validates :alias, :presence => true, :uniqueness => true, :format => { :with => /^(\w|-)+$/ }
   
-  def member? user
-    self.users.include? user
+  def member? user_id
+    ProjectUser.count(:conditions=>["user_id=? AND project_id=?", user_id, id]) > 0
   end
   def members_with_first user
     members = self.users

@@ -1,10 +1,10 @@
 -javascript('dashboard')
 -stylesheet('dashboard')
-#backlog.backlog
+.backlog
   %center
     %span.h3 Back Log
-    %a{:href => "#", :onclick => "toggleBacklog();return false;"} Close
-  .relative
+    %a{:href => "#", :onclick => "Dashboard.toggleBacklog();return false;"} Close
+  %ul.state{:id=>"backlog"}
     - @sprint.project.stickers.where("user_id IS NULL").each do |sticker|
       = render :partial => sticker
 %div{:id=>"newsticker", :style=>"display:none;"}

@@ -1,10 +1,5 @@
-<% unless @sticker.user_id.nil?%>
   var el = $(".sticker[sticker_id=<%= @sticker.id %>]");
   $('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>')
   .insertBefore(el);
 
   el.remove();
-  
-<% else %>
-  //$("#backlog>.relative").append('<%= escape_javascript(render :partial => "sticker", :locals=>{:sticker=>@sticker}) %>');
-<% end %>

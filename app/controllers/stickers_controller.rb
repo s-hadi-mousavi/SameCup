@@ -18,14 +18,17 @@ class StickersController < ApplicationController
       @sprint = @project.sprints.find(params[:sprint_id]) 
       @sticker_id = params[:sticker_id]
       @state_id = params[:state_id]
+      @user_id = params[:user_id]
+      
       #if user is not defined than it's backlog
-
+      return render :nothing=>true if !@user_id.nil? && !@project.member?(@user_id)
+      
       @sticker = Sticker.create(
-        :user_id => current_user.id, 
         :project_id => @project.id, 
         :sprint_id => @sprint.id, 
         :options=>{:color =>'#FFF046'},
         :description => 'As a user I want',
+        :user_id => @user_id, 
         :state_id => @state_id
         ) 
   end
@@ -33,19 +36,21 @@ class StickersController < ApplicationController
   def update
 
     @sticker = @project.stickers.find params[:id]
-    if @sticker.sprint.project.member?(current_user)
-      @sticker_id = params[:sticker].delete(:sticker_id)
-      @sticker_color = params[:sticker].delete(:sticker_color)
+    if @project.member?(current_user.id) && params.has_key?(:sticker)
       @sticker.update_attributes(params[:sticker])
+
       if params[:state_id] or params[:noredraw]
         render :nothing => true
       end
+    elsif !params.has_key?(:sticker)
+      #move to backlog
+      @sticker.update_attributes(:user_id=>nil, :state_id=>nil)
     end
   end
 
   def destroy
     @sticker = @project.stickers.find params[:id]
-    if @sticker.sprint.project.member?(current_user) #do we realy need it?
+    if @sticker.sprint.project.member?(current_user.id) #do we realy need it?
       @sticker.destroy
       @id = params[:id]
     end
@@ -54,7 +59,7 @@ class StickersController < ApplicationController
   def sort
     @sticker = @project.stickers.find params[:id]
     
-    if @project.member?(current_user)    
+    if @project.member?(current_user.id)    
       #if user is not defined than it's backlog
       params[:sticker][:user_id] = nil if params[:sticker].has_key?(:user_id) && params[:sticker][:user_id].to_i == 0
       params[:sticker][:sprint_id] = params[:sprint_id]
