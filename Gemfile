@@ -8,6 +8,7 @@ gem 'rails', '3.0.7'
 gem "rake", "0.8.7"
 gem "mysql2", '0.2.7'
 gem "devise",'1.4.2'
+gem 'oa-openid', :require => 'omniauth/openid'
 gem 'omniauth', "0.2.0"
 gem "thin"
 gem "devise_invitable"#, :git => "git://github.com/rymai/devise_invitable.git"
