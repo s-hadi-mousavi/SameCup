@@ -6,8 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable, :lockable, :omniauthable,
          :encryptable, :encryptor => :sha1
 
-  has_many :project_users
-  has_many :projects, :through => :project_users
+  #projects stuff
+  has_many :projects, :through => :project_users, :dependent => :destroy
+  has_many :project_users #will be destroyed in projects
+
+  #stickers
   has_many :stickers
   has_one :profile, :dependent => :destroy
         

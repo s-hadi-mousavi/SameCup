@@ -478,6 +478,7 @@ textarea
 {
   border: 1px solid black;
   color: black;
+  cursor: pointer;
   cursor: hand;
 }
 .button:active
@@ -493,7 +494,7 @@ a.button
 .button.login{
   height: 28px;
   font-size: 18px;
-  width: 205px;
+  width: 215px;
 }
 
 .button.red{
@@ -502,6 +503,14 @@ a.button
   border: 2px solid #FC8888;
   border-bottom: 2px solid #FC8888;
   
+}
+
+.button.big
+{
+  font-size:20px;
+  padding-left:20px;
+  padding-right:20px;
+  height:30px;
 }
 
 .button img {

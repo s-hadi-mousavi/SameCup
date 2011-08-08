@@ -1,7 +1,7 @@
 - if flash.has_key?(:notice) && !flash[:notice].empty?
   .notification= raw(flash[:notice])
 
-.form
+.form{:style=>"width: 250px"}
   = form_for(:user, :as => :user, :url => session_path(:user)) do |f|
     -if flash.has_key?(:alert) && !flash[:alert].empty?
       .error#errorExplanation= raw(flash[:alert])
@@ -18,7 +18,7 @@
       = f.label :remember_me, "remember me", {:class => 'remember_label'}
 
     %p
-      = f.submit "Sign in"
+      = f.submit "Sign in", :class=>"button big"
   = link_to "Forgot your password?", new_password_path(:user)
 
   %h2 Or

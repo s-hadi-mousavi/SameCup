@@ -1,12 +1,13 @@
 class Project < ActiveRecord::Base
   
   belongs_to :owner, :class_name => "User"
-  has_many :members, :class_name => "ProjectUser"
+  has_many :members, :class_name => "ProjectUser", :dependent => :destroy
   has_many :users, :through => :members
-  has_many :states
-  has_many :sprints
-  has_many :sprint_reports
-  has_many :stickers, :class_name => "Sticker"
+  has_many :states, :dependent => :destroy
+  has_many :sprints, :dependent => :destroy
+  has_many :sprint_reports, :dependent => :destroy
+  
+  has_many :stickers, :class_name => "Sticker" #will be destroyed with sprints
 
   
   # accepts_nested_attributes_for :states, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true

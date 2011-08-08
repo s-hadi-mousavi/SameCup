@@ -3,3 +3,16 @@
 
 en:
   hello: "Hello world"
+  
+  devise:  
+    failure:  
+      unauthenticated: 'You need to sign in or sign up before continuing.'  
+      unconfirmed: 'You have to confirm your account before continuing.'  
+      locked: 'Your account is locked.'  
+      invalid: 'Wrong credentials.'  
+      invalid_token: 'Invalid authentication token.'  
+      timeout: 'Your session expired, please sign in again to continue.'  
+      inactive: 'Your account was not activated yet.'  
+    sessions:  
+      signed_in: 'Signed in successfully.'  
+      signed_out: 'Signed out successfully.'
