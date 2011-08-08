@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
          :encryptable, :encryptor => :sha1
 
   #projects stuff
-  has_many :projects, :through => :project_users, :dependent => :destroy
+  has_many :projects, :through => :project_users
   has_many :project_users #will be destroyed in projects
-
+  has_many :own_projects, :class_name=>'Project', :foreign_key => 'owner_id', :dependent=>:destroy #destroy all own projects 
   #stickers
   has_many :stickers
   has_one :profile, :dependent => :destroy

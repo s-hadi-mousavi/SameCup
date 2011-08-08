@@ -14,5 +14,9 @@ class UserObserver < ActiveRecord::Observer
   def before_destroy(user)
     
   end
+  def after_destroy(user)
+    #remove all links to projects
+    ProjectUser.delete_all(["user_id = ?", user.id])
+  end
   
 end

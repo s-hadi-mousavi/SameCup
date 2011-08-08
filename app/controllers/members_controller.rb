@@ -42,7 +42,7 @@ def invite
        
       # if it's new user in the system
       if user.nil?
-        user = User.invite( :email => email, :name => email)
+        user = User.invite!( :email => email, :name => email)
         @project.users << user
         member = @project.members.find_by_user_id(user.id)
         member.update_attributes(:role => PROJECT_ROLE_TEAMMATE)

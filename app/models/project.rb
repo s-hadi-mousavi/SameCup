@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   has_many :members, :class_name => "ProjectUser", :dependent => :destroy
   has_many :users, :through => :members
+  
   has_many :states, :dependent => :destroy
   has_many :sprints, :dependent => :destroy
   has_many :sprint_reports, :dependent => :destroy
