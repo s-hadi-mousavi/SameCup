@@ -12,6 +12,12 @@ module Samecup
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+      g.test_framework :rspec
+    end
+    
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
 

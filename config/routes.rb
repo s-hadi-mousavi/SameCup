@@ -1,4 +1,4 @@
-Samecup::Application.routes.draw do |map|
+Samecup::Application.routes.draw do
   resources :user_stories
 
   resources :sprints
