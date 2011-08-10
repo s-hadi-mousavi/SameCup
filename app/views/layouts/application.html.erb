@@ -13,7 +13,15 @@
   <%= csrf_meta_tag %>
   <link rel="icon" type="image/png" href="/samecup_32x32.png" />
 </head>
-<body>
+<body>          
+  <div id="jflash"> 
+  <% unless flash[:notice].blank? %> 
+  <%= flash[:notice]%> 
+  <% end %> 
+  <% unless flash[:error].blank? %> 
+  <%= flash[:error]%> 
+  <% end %></div>
+  
   <div id="menu">
     <ul>
     <% if user_signed_in? %>

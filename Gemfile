@@ -24,6 +24,8 @@ group :test do
   gem 'cucumber-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'guard-rspec'
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -8,7 +8,12 @@ $(function() {
 
 	$('#sprint_start_at').datepicker({ dateFormat: 'yy-mm-dd'});
 	$('#sprint_end_at').datepicker({ dateFormat: 'yy-mm-dd'});
-
+  var flash = $('#jflash');
+  if(flash.html().trim() == "")
+    flash.hide();
+  else
+    notify(flash.html().trim());
+  
 			
 });
 
@@ -88,4 +93,18 @@ function hideUpgrade()
   if(window.upgradeDlg)
     window.upgradeDlg.dialog('close');
 }
+  
+  
+  function notify(flash_message) 
+  { 
+      // jQuery: reference div, load in message, and fade in 
+        var flash_div = $("#jflash") 
+        flash_div.html(flash_message); 
+        flash_div.fadeIn(400); 
+      // use Javascript timeout function to delay calling 
+      // our jQuery fadeOut, and hide 
+      setTimeout(function(){ 
+                  flash_div.fadeOut(500, function(){ flash_div.html(""); flash_div.hide()})}, 
+                  1400); 
+  } 
 
