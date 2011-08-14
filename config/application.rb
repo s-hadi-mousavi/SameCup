@@ -17,7 +17,7 @@ module Samecup
       g.helper_specs false
       g.test_framework :rspec
     end
-    
+
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
 
@@ -48,5 +48,10 @@ module Samecup
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.after_initialize do
+      load File.join(config.root, 'lib/extensions/string.rb')
+    end
+
   end
 end

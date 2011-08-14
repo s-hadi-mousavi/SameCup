@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
   #stickers
   has_many :stickers
   has_one :profile, :dependent => :destroy
-        
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :name
-  
+
   validates :name, :presence => true
-  
+
   def gavatar_url
     begin
       "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.strip.downcase)}"      
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
       "/images/noavatar.jpg"
     end
   end
-  
+
   def newpass length
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
     newpass = ""

@@ -8,3 +8,5 @@ config/config.yml
 db/schema.rb
 .DS_Store
 config/initializers/mailer.rb
+*.sw?
+vendor/bundle/**/*

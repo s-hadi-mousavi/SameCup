@@ -1,14 +1,14 @@
-require 'open-uri'
-require 'rss'
-
 class WelcomeController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :rss, :static]
+
   def index
-    
+    @projects_count = Project.count
   end
+
   def self.rssfeed
     rss = RSS::Parser.parse(open("http://blog.samecup.com/feeds/posts/default?alt=rss"))
   end
+
   def static
     allowed_names = ['termsofuse', 'privacypolicy', 'prices', 'tour']
     partial_name = request.path.downcase.gsub(/\//,'')
