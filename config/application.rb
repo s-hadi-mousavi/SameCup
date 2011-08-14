@@ -49,6 +49,7 @@ module Samecup
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    #TODO: figure out how to get config.autoload to do this for me
     config.after_initialize do
       load File.join(config.root, 'lib/extensions/string.rb')
     end
