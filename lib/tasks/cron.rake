@@ -6,7 +6,7 @@ task :cron => :environment do
       #preparing project
       #projects[sprint.project_id] = sprint.project unless projects.has_key?(sprint.project_id)
       #project = projects[sprint.project_id]
-      
+
       sprint_rep = SprintReport.find_or_create_by_sprint_id(sprint.id)
       sprint_rep.project_id = sprint.project_id
       sprint_rep.date1 = sprint.start_at
