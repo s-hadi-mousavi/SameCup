@@ -1,0 +1,77 @@
+!!!
+%html
+  %head
+    %title
+      = yield(:title) + " - " if content_for?(:title)
+      SameCup
+    %meta{:content => "Simple and real scrum board, that will help you easialy work with agile team whereever you are.Start your scrum board for free. Scrum(agile) is most efficient way to develop products.", :name => "description"}/
+    %meta{:content => "scrum,scrum board,cork board,colaboration,daily scrum,agile", :name => "keywords"}
+      = stylesheet_link_tag 'application', 'front', "redmond/jquery-ui-1.8.4.custom.css",'tickbox'
+      = stylesheet_link_tag content_for(:stylesheets).split(/,/) if content_for?(:stylesheets)
+      = javascript_include_tag 'jquery.min', 'jquery-ui.min', 'rails-jquery-ujs/src/rails', 'application','tickbox'
+      = javascript_include_tag content_for(:javascripts).split(/,/) if content_for?(:javascripts)
+      = csrf_meta_tag
+      %link{:href => "/samecup_32x32.png", :rel => "icon", :type => "image/png"}/
+  %body
+    #jflash
+      - unless flash[:notice].blank?
+        = flash[:notice]
+      - unless flash[:error].blank?
+        = flash[:error]
+    #menu
+      %ul
+        - if user_signed_in?
+          = render :partial=>"shared/usermenu"
+        - if @project.nil?
+          %li= link_to "Home", root_path, :class => yield(:menu) == 'home' ? 'selected-menu' : ''
+          %li= link_to "Tour", tour_path, :class => yield(:menu) == 'tour' ? 'selected-menu' : ''
+          %li
+            %a{:href => "http://blog.samecup.com"} Blog
+    #head
+      .logo.float-left
+        %a{:href => "/"}
+          %img{:src => "/images/samecup_logo.png", :height => "40px", :border => "0"}/
+        - if @project.nil? || @project.id.nil?
+          %a{:href => "/"} SameCup
+        - else
+          = link_to @project.name, project_path(@project)
+      .users-menu.float-left
+      .float-right
+        - if user_signed_in?
+          Signed in as #{link_to current_user.name, edit_user_registration_path(current_user)}. Not you?
+          \#{link_to "Sign out", destroy_user_session_path}
+        - else
+          = link_to "Sign up", new_user_registration_path
+          or #{link_to "sign in", new_user_session_path}
+      %div{:style => "clear:both"}
+    #feedback_button{:style => "position:absolute;top: 300px;left:0px;"}
+      %a{:href => "#", :onclick => "showFeedback();return false;"}
+        %img{:src => "/images/btn-feedback.png"}/
+    #content
+      = yield
+      %div{:style => "clear:both"}
+    %div{:style => "text-align:center; padding-top: 100px;padding-bottom: 20px;"}
+      = link_to "Terms of Use", termsofuse_path()
+      |
+      = link_to "Privacy Policy", privacypolicy_path()
+    #loading{:style => "display:none;"}
+      %center Loading...
+      %br/
+      %img{:src => "/images/loading.gif"}/
+    = render :partial => "shared/feedback_dialog"
+    :javascript
+      window.loadingDlg = $('#loading').dialog({ width: 250, height: 80, 
+      closeOnEscape:true, draggable:false, modal: true, resizable: false, zIndex: 9999999999, 
+      dialogClass: 'titleless', autoOpen:false});
+      
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15094691-1']);
+      _gaq.push(['_setDomainName', '.samecup.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

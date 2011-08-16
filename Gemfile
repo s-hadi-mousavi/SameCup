@@ -2,29 +2,33 @@ source 'http://rubygems.org'
 
 gem 'rails'
 gem 'rake'
-gem 'devise'
-gem 'oa-openid', :require => 'omniauth/openid'
-gem 'omniauth'
+gem 'oa-openid', '0.2.0',:require => 'omniauth/openid'
+gem 'omniauth', '0.2.0'
 gem 'thin'
+gem 'devise'
 gem 'devise_invitable'
 gem 'haml'
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+  gem 'mysql2', '~> 0.2.7' #recommended way
+  gem 'foreman'
+  gem 'rspec-rails'
+end
 
 group :test do
+  gem 'sqlite3'
+  gem 'database_cleaner'
+  
   gem 'rspec'
   gem 'rspec-rails'
   gem 'webrat'
   gem 'cucumber'
-  gem 'ruby-debug19'
   gem 'cucumber-rails'
-  gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'guard-rspec'
-  gem 'database_cleaner'
-end
-
-group :development do
-  gem 'foreman'
-  gem 'capistrano'
-  gem 'rspec-rails'
+  gem 'guard-cucumber'
+  
+  gem 'ruby-debug19'
 end

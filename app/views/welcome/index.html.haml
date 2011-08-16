@@ -1,0 +1,65 @@
+- menu('home')
+- javascript('welcome')
+%div{:style => "margin-left:auto; margin-right:auto; width: 1000px; border: 0px solid lime;"}
+
+  / left column
+  %div{:style => "float:left; display: table-cell; "}
+    %div{:style => "width: 650px;"}
+      .h2 SameCup is
+      %br/
+      %span{:style => "font-size: 14px;line-height: 19px;"}
+        %a{:class=>"video", :href=>"http://www.youtube.com/v/wpzUKW48M1U", :target=>"_blank"}
+          %img{:src=>"/images/video.png", :align=>"left"}
+        %b scrum board
+        full of ,
+        %b stickers
+        %b sprints
+        and other
+        %b agile oriented
+        functionality. This product was created by people who
+        %b love scrum
+        and decided to make unique management tool that will help to build right development process.
+        .g-clear-20
+        Check out the source code :
+        %a{:href => "http://github.com/defsan/SameCup", :target => "_blank"} https://github.com/defsan/SameCup
+        
+        #videoembed{:style => "display:none"}
+          %object{:height => "385", :width => "640"}
+            %param{:name => "movie", :value => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US"}
+            %param{:name => "allowFullScreen", :value => "true"}
+            %param{:name => "allowscriptaccess", :value => "always"}
+            %embed{:allowfullscreen => "true", :allowscriptaccess => "always", :height => "385", :src => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US", :type => "application/x-shockwave-flash", :width => "640"}
+        
+      .g-clear
+      
+  / right column
+  %div{:style => "float: left; width: auto; display: table-cell;padding-left: 30px;"}
+    %div{:style => "width:300px; font-size: 16px; padding-bottom:30px;"}
+      Simple, straight and lean scrum board service
+      %div{:style => "text-align:right;font-size:40px; font-family:Tahoma;padding-right:100px;font-weight: bolder;"}= @project_count
+      %div{:style => "font-size: 12px; color:silver;"}
+        %center current projects
+      %br/
+      - if current_user.nil?
+        .form{:style => "margin-left:auto; margin-right:auto;"}
+          %center
+            .h3= link_to "Create new account", new_user_registration_url
+      - else
+        .form{:style => "width: 220px;text-align: center;font-size: 20px;"}
+          %span.plus +
+          = link_to 'Start New Project', new_project_path
+    .h3 Follow us on
+    %a{:href => "http://blog.samecup.com"}
+      %img{:alt => "SameCup blog", :border => "0", :src => "/images/blogicon.png"}/
+    %a{:href => "http://twitter.com/samecup"}
+      %img{:alt => "Twitter of SameCup", :border => "0", :src => "/images/twitter.png"}/
+    .g-clear-20
+    .h3 Last news
+    - cache 'rss-news', :expire => 60.minutes do
+      - feed = WelcomeController.rssfeed
+      - unless feed.nil?
+        - feed.items[0..5].each do |entry|
+          .newsitem
+            = link_to h(entry.title), entry.link
+            %br/
+            %span= raw truncate(entry.description.gsub(/<\/?[^>]*>/, ""), :length => 100)
