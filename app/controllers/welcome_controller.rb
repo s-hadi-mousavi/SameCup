@@ -4,11 +4,7 @@ class WelcomeController < ApplicationController
   def index
     @projects_count = Project.count
   end
-
-  def self.rssfeed
-    rss = RSS::Parser.parse(open("http://blog.samecup.com/feeds/posts/default?alt=rss"))
-  end
-
+ 
   def static
     allowed_names = ['termsofuse', 'privacypolicy', 'prices', 'tour']
     partial_name = request.path.downcase.gsub(/\//,'')

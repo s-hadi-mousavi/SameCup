@@ -1,6 +1,3 @@
-- if flash.has_key?(:notice) && !flash[:notice].empty?
-  .notification= raw(flash[:notice])
-
 .form{:style=>"width: 250px"}
   = form_for(:user, :as => :user, :url => session_path(:user)) do |f|
     -if flash.has_key?(:alert) && !flash[:alert].empty?

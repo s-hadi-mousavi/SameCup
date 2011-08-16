@@ -25,10 +25,10 @@
         
         #videoembed{:style => "display:none"}
           %object{:height => "385", :width => "640"}
-            %param{:name => "movie", :value => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US"}
+            %param{:name => "movie", :value => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US&autoplay=1&rel=0"}
             %param{:name => "allowFullScreen", :value => "true"}
             %param{:name => "allowscriptaccess", :value => "always"}
-            %embed{:allowfullscreen => "true", :allowscriptaccess => "always", :height => "385", :src => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US", :type => "application/x-shockwave-flash", :width => "640"}
+            %embed{:allowfullscreen => "true", :allowscriptaccess => "always", :height => "385", :src => "http://www.youtube.com/v/wpzUKW48M1U?fs=1&hl=en_US&autoplay=1&rel=0", :type => "application/x-shockwave-flash", :width => "640"}
         
       .g-clear
       
@@ -56,7 +56,7 @@
     .g-clear-20
     .h3 Last news
     - cache 'rss-news', :expire => 60.minutes do
-      - feed = WelcomeController.rssfeed
+      - feed = get_rss
       - unless feed.nil?
         - feed.items[0..5].each do |entry|
           .newsitem

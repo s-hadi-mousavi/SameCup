@@ -8,12 +8,8 @@ $(function() {
 
 	$('#sprint_start_at').datepicker({ dateFormat: 'yy-mm-dd'});
 	$('#sprint_end_at').datepicker({ dateFormat: 'yy-mm-dd'});
-  var flash = $('#jflash');
-  if(flash.html().trim() == "")
-    flash.hide();
-  else
-    notify(flash.html().trim());
   
+  if((flash = $('#jflash')).html().trim() != "") $.alertMe(flash.html());
 			
 });
 

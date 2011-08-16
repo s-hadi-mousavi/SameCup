@@ -14,7 +14,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
       And I press "Sign up"
-      Then I should see "Welcome! You have signed up successfully." 
+      Then I should see hidden "You have signed up successfully" 
       
     Scenario: User signs up with invalid email
       And I fill in the following:
@@ -31,20 +31,3 @@ Feature: Sign up
         | Password              |                 |
       And I press "Sign up"
       Then I should see "Password can't be blank"
-
-    Scenario: User signs up without password confirmation
-      And I fill in the following:
-        | Name                  | Testy McUserton |
-        | Email                 | user@test.com   |
-        | Password              | please          |
-      And I press "Sign up"
-      Then I should see "Password doesn't match confirmation"
-
-    # Scenario: User signs up with mismatched password and confirmation
-    #   And I fill in the following:
-    #     | Name                  | Testy McUserton |
-    #     | Email                 | user@test.com   |
-    #     | Password              | please          |
-    #   And I press "Sign up"
-    #   Then I should see "Password doesn't match confirmation"
-

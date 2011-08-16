@@ -631,7 +631,9 @@ a.button
 {
   margin-right: 15px;
 }            
-
+#jflash{
+  display: ;
+}
 .video img{
   border: 3px solid silver;
   margin: 5px;

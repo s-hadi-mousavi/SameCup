@@ -55,7 +55,7 @@ When /^I return next time$/ do
 end
 
 Then /^I should be signed out$/ do
-  And %{I should see "Sign up"}
+  And %{I should see "Register"}
   And %{I should see "sign in"}
   And %{I should not see "Logout"}
 end

@@ -209,3 +209,7 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^I should see hidden "([^"]*)"$/ do |text|
+  page.source.should include(text)
+end

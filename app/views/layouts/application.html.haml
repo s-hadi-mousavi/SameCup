@@ -8,16 +8,11 @@
     %meta{:content => "scrum,scrum board,cork board,colaboration,daily scrum,agile", :name => "keywords"}
       = stylesheet_link_tag 'application', 'front', "redmond/jquery-ui-1.8.4.custom.css",'tickbox'
       = stylesheet_link_tag content_for(:stylesheets).split(/,/) if content_for?(:stylesheets)
-      = javascript_include_tag 'jquery.min', 'jquery-ui.min', 'rails-jquery-ujs/src/rails', 'application','tickbox'
+      = javascript_include_tag 'jquery.min', 'jquery-ui.min', 'rails-jquery-ujs/src/rails', 'application','tickbox','alertMe'
       = javascript_include_tag content_for(:javascripts).split(/,/) if content_for?(:javascripts)
       = csrf_meta_tag
       %link{:href => "/samecup_32x32.png", :rel => "icon", :type => "image/png"}/
   %body
-    #jflash
-      - unless flash[:notice].blank?
-        = flash[:notice]
-      - unless flash[:error].blank?
-        = flash[:error]
     #menu
       %ul
         - if user_signed_in?
@@ -39,9 +34,9 @@
       .float-right
         - if user_signed_in?
           Signed in as #{link_to current_user.name, edit_user_registration_path(current_user)}. Not you?
-          \#{link_to "Sign out", destroy_user_session_path}
+          \#{link_to "Logout", destroy_user_session_path}
         - else
-          = link_to "Sign up", new_user_registration_path
+          = link_to "Register", new_user_registration_path
           or #{link_to "sign in", new_user_session_path}
       %div{:style => "clear:both"}
     #feedback_button{:style => "position:absolute;top: 300px;left:0px;"}
@@ -59,6 +54,12 @@
       %br/
       %img{:src => "/images/loading.gif"}/
     = render :partial => "shared/feedback_dialog"
+    #jflash
+      - unless flash[:notice].blank?
+        = flash[:notice]
+      - unless flash[:error].blank?
+        = flash[:error]
+    
     :javascript
       window.loadingDlg = $('#loading').dialog({ width: 250, height: 80, 
       closeOnEscape:true, draggable:false, modal: true, resizable: false, zIndex: 9999999999, 
