@@ -1,6 +1,15 @@
 #head {
   margin-bottom: 0px;
 }
+.project_header{
+  display:inline;
+  margin-left:3px;
+}
+#sprint_goal{
+  width: 400px;
+  display:none;
+  text-align:left;
+}
 table.project {
 	border: none;
 	width:100%;
