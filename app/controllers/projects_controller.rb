@@ -61,17 +61,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.xml
   def create
-    @project = current_user.projects.create(params[:project])
-    @project.owner = current_user
-    default = ["Done", "In progress", "Inbox"]
-    3.times do
-      @project.states.build(:name => default.pop)
-    end
-    @project.sprints.build(:name => 'New sprint',:description=>'', :start_at => Time.now, :end_at => Time.now + 1.week)
+    @project = Project.create(params[:project])
+
     respond_to do |format|
-      if @project.save
-        owner = @project.members.find_by_user_id(current_user.id)
-        owner.update_attributes(:role => PROJECT_ROLE_SCRUMMASTER)
+      if @project.save        
+        #assign owner
+        @project.owner = current_user
+
         format.html { redirect_to(@project, :notice => 'Project was successfully created.')}
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else

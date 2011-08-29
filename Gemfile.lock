@@ -244,6 +244,7 @@ DEPENDENCIES
   guard-rspec
   haml
   mysql2 (~> 0.2.7)
+  nokogiri (= 1.4.7)
   oa-openid (= 0.2.0)
   omniauth (= 0.2.0)
   rails

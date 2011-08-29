@@ -14,6 +14,12 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
   validates :alias, :presence => true, :uniqueness => true, :format => { :with => /^(\w|-)+$/ }
 
+  def owner=(user)
+    owner_id = user.id
+    members.find_or_create_by_user_id(user.id).update_attribute(:role, PROJECT_ROLE_SCRUMMASTER)
+    user
+  end
+
   def member? user_id
     ProjectUser.count(:conditions=>["user_id=? AND project_id=?", user_id, id]) > 0
   end

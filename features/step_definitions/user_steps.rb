@@ -9,6 +9,7 @@ Given /^I am a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*
             :password_confirmation => password)
   u.save!
   u.confirm! #confirm test user
+  @current_user = u
 end
 
 Then /^I should be already signed in$/ do

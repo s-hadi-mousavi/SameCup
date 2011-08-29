@@ -17,6 +17,7 @@ group :development do
 end
 
 group :test do
+  gem 'nokogiri','1.4.7'
   gem 'sqlite3'
   gem 'database_cleaner'
   
