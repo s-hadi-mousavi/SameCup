@@ -6,6 +6,8 @@ def get_rss
   require 'rss'
   
   rss = ::RSS::Parser.parse(open("http://blog.samecup.com/feeds/posts/default?alt=rss"))
+rescue Exception => e
+  puts "$!"
 end
 
 end

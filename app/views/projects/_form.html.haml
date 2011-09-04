@@ -1,0 +1,21 @@
+= form_for @project,:html=> {:id=>"project_form"}  do |f|
+  - if @project.errors.any?
+    #errorExplanation
+      %h2
+        = pluralize(@project.errors.count, "error")
+        found:
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    %p
+      = f.label :name
+      = f.text_field :name
+  .field
+    %p
+      = f.label :alias
+      = f.text_field :alias
+      %br/
+      %span{:style => "color: silver;font-size:10px;padding-left:10px;"} *please use only letters,digits and -
+  .actions
+    = f.submit

@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   validates :alias, :presence => true, :uniqueness => true, :format => { :with => /^(\w|-)+$/ }
 
   def owner=(user)
-    owner_id = user.id
+    update_attribute(:owner_id, user.id)
     members.find_or_create_by_user_id(user.id).update_attribute(:role, PROJECT_ROLE_SCRUMMASTER)
     user
   end
@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
   end
 
   def to_param
-    self.alias
+    result = self.alias.empty? ? Project.find(id).alias : self.alias
   end
 
 end
