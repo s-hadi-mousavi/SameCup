@@ -3,7 +3,7 @@
     %a{:href=>"#", :id=>"sticker_story#{sticker.id}", :onclick=>"$.get('#{show_dialog_project_user_story_path(@project,sticker.user_story_id)}');return false"}
       = truncate(sticker.user_story.title.html_safe, :length=>22)
   .content
-    = auto_link(sticker.description.html_safe.gsub(/\n/, '<br />'), :urls, :target => "_blank")
+    =raw auto_link(sticker.description.html_safe.gsub(/\n/, '<br />'), :urls, :target => "_blank")
     .g-clear
   =  link_to '', project_sprint_sticker_path(@project, @sprint, sticker), :remote => true, :method => :delete, :class => 'delete', :confirm => "Are you sure?"
   
