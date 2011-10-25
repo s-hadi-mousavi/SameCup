@@ -11,6 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.token_authenticatable
 
       t.timestamps
+      t.string :password_salt #legacy
     end
 
     add_index :users, :email,                :unique => true
