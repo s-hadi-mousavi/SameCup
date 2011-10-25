@@ -37,6 +37,8 @@ class StickersController < ApplicationController
 
     @sticker = @project.stickers.find params[:id]
     if @project.member?(current_user.id) && params.has_key?(:sticker)
+      #always update sprint so when moved from back log it still change sprint_id
+      params[:sticker][:sprint_id] = @sprint.id
       @sticker.update_attributes(params[:sticker])
 
       if params[:state_id] or params[:noredraw]
