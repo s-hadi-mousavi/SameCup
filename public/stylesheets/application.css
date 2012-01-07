@@ -159,6 +159,41 @@ div.field, div.actions {
 {
   background: #DBF4FF;
 }
+
+
+#sprints_menu
+{
+  background: #A2D2E8;
+  position: absolute;
+  display: none;
+  margin: 0px;
+  margin-top: -22px;
+  margin-left: 117px;
+  z-index: 9999999999;
+
+}
+#sprints_menu ul
+{
+  padding: 5px;
+}
+#sprints_menu ul li
+{
+  display: block;
+  line-height: 24px;
+}
+#sprints_menu ul li a
+{
+  color: #21759B;
+  background: #A2D2E8;
+  padding: 3px;
+  font-size: 13px;
+}
+#sprints_menu ul li a:hover
+{
+  background: #DBF4FF;
+}
+
+
 #content {
 	padding: 10px;
 }

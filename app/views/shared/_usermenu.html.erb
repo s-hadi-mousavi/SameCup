@@ -11,7 +11,18 @@
 </div>
 </li>
 <% if !@project.nil? && !@project.id.nil? %>
-<li><%= link_to 'Sprints', project_sprints_path(@project), :class => yield(:menu) == 'sprints' ? 'selected-menu' : 'user-menu' %></li>
+<li><%= link_to 'Sprints', project_sprints_path(@project), :onmouseover =>"$('#sprints_menu').show();", :class => yield(:menu) == 'sprints' ? 'selected-menu' : 'user-menu' %>
+  <div id="sprints_menu"  onmouseout="$('#sprints_menu').hide();return false;" onmouseover ="$('#sprints_menu').show();">
+   <ul onmouseover ="$('#sprints_menu').show();">
+    <li><b><%= link_to "Sprints", project_sprints_path(@project) %></b></li>
+    <% @project.sprints[0..4].each do |sprint| %>
+    <li><%= link_to sprint.name, project_sprint_path(@project, sprint) %></li>
+    <% end %>
+    <li style="border-top: 1px solid silver;margin-top: 5px"><%= link_to "+ Add sprint", new_project_sprint_path(@project) %></li>
+   </ul>
+  </div>
+
+</li>
 <li><%= link_to 'Members', project_members_path(@project), :class => yield(:menu) == 'members' ? 'selected-menu' : 'user-menu' %></li>
   <% if current_user.is_master_of_project?(@project)%>
   <!-- <li><%= link_to 'User Stories', project_user_stories_path(@project), :class => yield(:menu) == 'userstories' ? 'selected-menu' : 'user-menu' %></li>
