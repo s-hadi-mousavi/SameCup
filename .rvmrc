@@ -1,2 +1,2 @@
 rvm_project_rvmrc=1
-rvm use ruby-1.9.2-p180
+rvm use ruby-1.9.2-p290

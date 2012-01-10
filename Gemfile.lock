@@ -103,7 +103,6 @@ GEM
     mime-types (1.16)
     multi_json (0.0.5)
     multipart-post (1.1.3)
-    mysql2 (0.2.13)
     net-ldap (0.1.1)
     nokogiri (1.4.7)
     oa-basic (0.2.0)
@@ -243,7 +242,6 @@ DEPENDENCIES
   guard-cucumber
   guard-rspec
   haml
-  mysql2 (~> 0.2.7)
   nokogiri (= 1.4.7)
   oa-openid (= 0.2.0)
   omniauth (= 0.2.0)

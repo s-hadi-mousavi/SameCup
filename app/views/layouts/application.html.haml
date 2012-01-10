@@ -8,7 +8,7 @@
     %meta{:content => "scrum,scrum board,cork board,colaboration,daily scrum,agile", :name => "keywords"}
       = stylesheet_link_tag 'application', 'front', "redmond/jquery-ui-1.8.4.custom.css",'tickbox'
       = stylesheet_link_tag content_for(:stylesheets).split(/,/) if content_for?(:stylesheets)
-      = javascript_include_tag 'jquery.min', 'jquery-ui.min', 'rails-jquery-ujs/src/rails', 'application','tickbox','alertMe'
+      = javascript_include_tag 'jquery.min', 'jquery-ui.min', 'https://raw.github.com/rails/jquery-ujs/master/src/rails.js', 'application','tickbox','alertMe'
       = javascript_include_tag content_for(:javascripts).split(/,/) if content_for?(:javascripts)
       = csrf_meta_tag
       %link{:href => "/samecup_32x32.png", :rel => "icon", :type => "image/png"}/

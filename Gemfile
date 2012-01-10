@@ -11,7 +11,7 @@ gem 'haml'
 
 group :development do
   gem 'sqlite3'
-  gem 'mysql2', '~> 0.2.7' #recommended way
+#  gem 'mysql2', '~> 0.2.7' #recommended way
   gem 'foreman'
   gem 'rspec-rails'
 end
