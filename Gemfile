@@ -8,6 +8,7 @@ gem 'thin'
 gem 'devise'
 gem 'devise_invitable'
 gem 'haml'
+gem 'jquery-rails', '>= 1.0.12'
 
 group :development do
   gem 'sqlite3'
