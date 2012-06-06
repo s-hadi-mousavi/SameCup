@@ -15,6 +15,7 @@ group :development do
 #  gem 'mysql2', '~> 0.2.7' #recommended way
   gem 'foreman'
   gem 'rspec-rails'
+  gem 'ruby-debug19'
 end
 
 group :test do

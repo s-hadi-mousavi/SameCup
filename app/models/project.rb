@@ -15,8 +15,8 @@ class Project < ActiveRecord::Base
   validates :alias, :presence => true, :uniqueness => true, :format => { :with => /^(\w|-)+$/ }
 
   def owner=(user)
-    owner_id = user.id
-    members.find_or_create_by_user_id(user.id).update_attribute(:role, PROJECT_ROLE_SCRUMMASTER)
+    self.owner_id = user.id
+    self.members.find_or_create_by_user_id(user.id).update_attribute(:role, PROJECT_ROLE_SCRUMMASTER)
     user
   end
 
