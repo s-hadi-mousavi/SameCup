@@ -32,10 +32,8 @@ class Project < ActiveRecord::Base
 
   def current_sprint
     #if no sprint is sent, then try to find most accurate
-    sprint = sprints.find(:first , :conditions => ["created_at<=? AND end_at>=?", Time.now, Time.now] ,:order=> 'end_at DESC')
-    #if no sprint in middle of now found, then get last one
-    sprint = sprints.find(:first,:order=> 'end_at DESC') if sprint.nil?
-    sprint
+    sprints.find(:first , :conditions => ["start_at<=? AND end_at>=?", Time.now, Time.now] ,:order=> 'end_at DESC') \
+    || sprints.find(:first,:order=> 'end_at DESC')
   end
 
   def to_param
