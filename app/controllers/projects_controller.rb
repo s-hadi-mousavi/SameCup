@@ -62,12 +62,11 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.create(params[:project])
-
     respond_to do |format|
       if @project.save        
         #assign owner
         @project.owner = current_user
-
+        @project.save
         format.html { redirect_to(@project, :notice => 'Project was successfully created.')}
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else
