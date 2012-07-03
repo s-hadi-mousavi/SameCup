@@ -3,6 +3,8 @@ About SameCup.com
 
 scrum board full of stickers, sprints and other agile oriented functionality. This product was created by people who love scrum and decided to make unique management tool that will help to build right development process.
 
+Check working website http://samecup.com
+
 Source
 ------
 Source code is provided under [GPL license](http://www.gnu.org/licenses/gpl-3.0.txt) and use Github as public repository.
