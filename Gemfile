@@ -32,7 +32,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'guard-cucumber'
-  gem 'growl_notify' 
+  #gem 'growl_notify' 
+  gem 'libnotify'
+
   
   gem 'ruby-debug19'
 end
