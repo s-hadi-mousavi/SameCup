@@ -14,5 +14,3 @@ Project is currently in Beta
 
 We are sorry of periodic unavailability or data lose.
 check fresh updates on twitter [@samecup](http://twitter.com/samecup)
-
-Contact [defsan](https://github.com/defsan) if you want participate in development
